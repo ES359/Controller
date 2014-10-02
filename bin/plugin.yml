@@ -1,0 +1,45 @@
+name: Controller
+main: com.enjin.es359.Controller
+version: 1.1
+description: Main Plugin with sub plugin features.
+
+commands:
+  alert:
+    description: Broadcasts a message across the server. 
+    
+  motd:
+    description: Displays the currently set MOTDS.
+    
+  setmotd:
+    description: Sets the ingame MOTD.
+    
+  setlistmotd:
+    description: Sets the server List MOTD.
+    
+  cp:
+    description: Defualt command for Control Panel.    
+  
+  kickmsg:
+    description: Displays the whitelist message.
+    
+  setkickmsg:
+    description: Sets the whitelist message.  
+    
+  usercp:
+    description: Main command for USER CP. 
+   
+  chat:
+    description: main command to enable or disable chat.
+
+  restrict:
+    description: Main command to Restrict a Player.
+
+permissions:
+  Controller.*:
+    description: Gives access to all Controller permissions.
+    default: op
+
+  Controller.event.join:
+    default: false
+  Controller.event.quit:
+    default: false

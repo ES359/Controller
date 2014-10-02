@@ -1,0 +1,56 @@
+# Controller Main Configuration File.
+
+motd:
+  server: "&8&oController &4&l> &a&oEnabled."
+  ingame: "&4Server &6MOTD &2Running"
+  
+# # Join messages.
+Join:
+  message: "&e&oJoin&8&l> &7%playername%"
+  enabled: true
+# # 
+Quit:
+  message: "&c&oQuit&8&l> &6%playername%"
+  enabled: true
+# # 
+AlertPrefix: "&8&oAlert &b&l> &7"
+# # 
+
+# Disables TNT explosions:
+Explosion:
+  Disabled: true
+# ======================================
+#
+#
+# BCCPBR Block Restriction:
+Blocks:
+  message: '&8Controller &b&l> &c%player%, &6do not have permission to use: '
+  Restricted:
+  - '7'
+  - '8'
+  - '9'
+  - '10'
+  - '11'
+  - '119'
+  - '259'
+  - '51'
+# ======================================
+#
+#
+# Water and lava bucket restriction:
+Bucket:
+  WaterBucket:
+    message: '&8&oCR &4&l> &c%player%, &6do not have permission to use: '
+# #
+kick-message: "&9Whitelist&8> &c&oConnection failed: &7You have not been whitelisted &9&o%playername%&c."
+# ## ## ## ## ## ## ## ## ## ## ## ## ## ## ## ##
+chat-disabled:
+  msg: "&7The chat has been &cDisabled, &a %playername%"
+### ### ### ###
+Database:
+  Enabled: false
+  host: '101.0.1'
+  username: 'root'
+  password: 'admin'
+  database: 'mcAdmin'
+restricted-msg: "&c&oYou have been &4&nRestricted &cand not allowed to &4Move&c."
