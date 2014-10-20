@@ -18,8 +18,9 @@ import org.bukkit.plugin.PluginDescriptionFile;
 public class SettingsManager {
 
 	private SettingsManager() {}
-	
-	
+
+    public Player player;
+
 	
 	static SettingsManager instance = new SettingsManager();
 	
@@ -41,6 +42,14 @@ public class SettingsManager {
 		p.saveConfig();
 		//Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Console + "&b&lConfiguration file has been &a&ocreated&b&l!"));
 	}
+
+
+   public Player getPlayer()
+    {
+        return player;
+    }
+
+
 	
 	public FileConfiguration getConfig() {
 		return config;
@@ -67,7 +76,10 @@ public class SettingsManager {
 	}
 	
 	static public ItemStack createItem(Material mat, String name) {
-		ItemStack is = new ItemStack(mat);
+
+        name = name.replaceAll("&", "");
+
+        ItemStack is = new ItemStack(mat);
 		ItemMeta meta = is.getItemMeta();
 		meta.setDisplayName(name);
 		is.setItemMeta(meta);

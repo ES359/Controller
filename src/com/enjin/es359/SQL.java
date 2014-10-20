@@ -1,6 +1,7 @@
 package com.enjin.es359;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
@@ -26,7 +27,7 @@ public class SQL
             c = DriverManager.getConnection("jdbc:mysql://" + ip + "/" + db + "?user=" + userName + "&password=" + access);
         } catch (Exception e) {
             e.printStackTrace();
-            Bukkit.getServer().getConsoleSender().sendMessage(i.connectionError());
+            Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "Connection Error.");
         }
     }
 }

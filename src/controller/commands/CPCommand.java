@@ -1,21 +1,20 @@
 package controller.commands;
 
+import com.enjin.es359.Inform;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import com.enjin.es359.Controller;
-import com.enjin.es359.Info;
 import com.enjin.es359.SettingsManager;
 
 import controller.events.CPMenuEvent;
 
-public class CPCommand implements CommandExecutor{
+public class CPCommand extends Inform implements CommandExecutor{
 
 	SettingsManager sm = SettingsManager.getControllerInstance();
-	Info info = new Info();
-	
+
 	public Controller a;
 	
 	public CPMenuEvent cp;
@@ -30,7 +29,7 @@ public class CPCommand implements CommandExecutor{
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String args[]) {
 		
 		if(!(sender instanceof Player)) {
-			sender.sendMessage(Info.prefix_Console +info.commandError());
+			sender.sendMessage(prefix_Console +commandError());
 			return true;
 		}
 	 	
@@ -38,11 +37,11 @@ public class CPCommand implements CommandExecutor{
 		
 		if(cmd.getName().equalsIgnoreCase("cp")) {
 			if(!p.hasPermission("Controller.cmd.cp")) {
-				sender.sendMessage(Info.prefix_Permission + info.permissionError());
+				sender.sendMessage(prefix_Permission + permissionError());
 				return true;
 			}else {
 				if(args.length > 0) {
-					p.sendMessage(Info.prefix_argsError + info.commandError());
+					p.sendMessage(prefix_argsError + commandError());
 					return true;
 				}else if(args.length == 0) {
 					

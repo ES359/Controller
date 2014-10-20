@@ -1,5 +1,6 @@
 package controller.events;
 
+import com.enjin.es359.Inform;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -13,12 +14,13 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
 import com.enjin.es359.Controller;
-import com.enjin.es359.Info;
 import com.enjin.es359.SettingsManager;
 //Add whitelist features next.
 //Fix join and quit logic.
 
-public class CPMenuEvent implements Listener{
+public class CPMenuEvent extends Inform
+
+        implements Listener{
 
 
     /**
@@ -26,10 +28,10 @@ public class CPMenuEvent implements Listener{
      */
 
 
-
-
     SettingsManager sm = SettingsManager.getControllerInstance();
-	Info info = new Info();
+    ChatEvent ch = ChatEvent.getChatInstance();
+
+
 	public ItemStack day,night,sun,rain,pList,reload,reloadConfig,stop,whitelist,motd,whitelistmsg,chat;
 	
 	public Controller c;
@@ -78,36 +80,6 @@ public class CPMenuEvent implements Listener{
 		p.openInventory(cp);
 	}
 
-    public boolean chatEnabled;
-
-    public boolean returnChatEnabled() {
-        return chatEnabled;
-    }
-
-    public void setChatEnabled(boolean val) {
-        chatEnabled = val;
-    }
-
-    @EventHandler
-    public void chatEnable(AsyncPlayerChatEvent event) {
-
-        Player pl = event.getPlayer();
-
-        if(returnChatEnabled()) {
-            if(!pl.hasPermission("Controller.event.chatbypass")) {
-                event.setCancelled(true);
-
-                String conf = sm.getConfig().getString("chat-disabled.msg");
-                conf = conf.replaceAll("%playername%", pl.getName());
-
-                pl.sendMessage(ChatColor.translateAlternateColorCodes('&',conf));
-            }else {
-
-                event.setCancelled(false);
-            }
-        }
-
-    }
 
 	
 	@EventHandler
@@ -126,23 +98,23 @@ public class CPMenuEvent implements Listener{
 		*/
 
 
-//Chat.
+//Chat.Inform.
         if(event.getCurrentItem().equals(chat)) {
 
             if(!p.hasPermission("Controller.cp.admin.chat")) {
                 p.closeInventory();
-                p.sendMessage(Info.prefix_Permission + info.permissionError());
+                p.sendMessage(prefix_Permission + permissionError());
             }else {
                 if(event.isRightClick()) {
                     event.setCancelled(true);
-                    setChatEnabled(false);
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&',Info.prefix_Plugin +"&cGlobal chat has been &a&oUnmuted."));
-                    Bukkit.getServer().broadcastMessage(info.chatInformEnabled());
+                    ch.setChatEnabled(false);
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix_Plugin +"&cGlobal chat has been &a&oUnmuted."));
+                    Bukkit.getServer().broadcastMessage(chatInformEnabled());
                 }else if(event.isLeftClick()) {
                     event.setCancelled(true);
-                    setChatEnabled(true);
-                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Plugin +"&cGlobal Chat has been &c&oMuted."));
-                    Bukkit.getServer().broadcastMessage(info.chatinformDisabled());
+                    ch.setChatEnabled(true);
+                    p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix_Plugin +"&cGlobal Chat has been &c&oMuted."));
+                    Bukkit.getServer().broadcastMessage(chatinformDisabled());
                 }
             }
         }
@@ -157,7 +129,7 @@ public class CPMenuEvent implements Listener{
 		if(event.getCurrentItem().equals(motd)) {
 			if(!p.hasPermission("Controller.cp.admin.motd")) {
 				p.closeInventory();
-				p.sendMessage(Info.prefix_Permission + info.permissionError());
+				p.sendMessage(prefix_Permission + permissionError());
 				return;
 			}else {
 				if(event.isRightClick() || event.isLeftClick() || event.isShiftClick()) {
@@ -178,7 +150,7 @@ public class CPMenuEvent implements Listener{
 		if(event.getCurrentItem().equals(whitelistmsg)) {
 			if(!p.hasPermission("Controller.cp.admin.whitelistmsg")) {
 				p.closeInventory();
-				p.sendMessage(Info.prefix_Permission + info.permissionError());
+				p.sendMessage(prefix_Permission + permissionError());
 				return;
 			}else {
 				if(event.isRightClick() || event.isLeftClick() || event.isShiftClick()) {
@@ -195,19 +167,19 @@ public class CPMenuEvent implements Listener{
 		if(event.getCurrentItem().equals(whitelist)) {
 			if(!p.hasPermission("Controller.cp.admin.whitelist")) {
 				p.closeInventory();
-				p.sendMessage(Info.prefix_Permission + info.permissionError());
+				p.sendMessage(prefix_Permission + permissionError());
 				return;
 			}else {
 				if(event.isRightClick() ) {
 					event.setCancelled(true);
 					Bukkit.getServer().setWhitelist(false); 
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Plugin + "&7White list has been &c&oDisabled."));
-					Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Console + "&6&lWhitelist has been &cdisabled &6&lby player, &e" + p.getName()));
+					p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix_Plugin + "&7White list has been &c&oDisabled."));
+					Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', prefix_Console + "&6&lWhitelist has been &cdisabled &6&lby player, &e" + p.getName()));
 				}else if(event.isLeftClick()) {
 					event.setCancelled(true);
 					Bukkit.getServer().setWhitelist(true);
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Plugin + "&7White list has been &a&oEnabled."));
-					Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Console + "&6&lWhitelist has been &aEnabled &6&lby player, &e" + p.getName()));
+					p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix_Plugin + "&7White list has been &a&oEnabled."));
+					Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&',prefix_Console + "&6&lWhitelist has been &aEnabled &6&lby player, &e" + p.getName()));
 					return;
 				}
 			}
@@ -221,11 +193,11 @@ public class CPMenuEvent implements Listener{
 				
 			if(!p.hasPermission("Controller.cp.day")) {
 				p.closeInventory();
-				p.sendMessage(Info.prefix_Permission + info.permissionError());
+				p.sendMessage(prefix_Permission +permissionError());
 				return;
 			}else {
 					p.getWorld().setTime(1000);
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Plugin+"&6&lThe time in the &bWorld: " + p.getWorld().getName() + ChatColor.translateAlternateColorCodes('&', " &ehas been set to &6&oDay!")));
+					p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix_Plugin+"&6&lThe time in the &bWorld: " + p.getWorld().getName() + ChatColor.translateAlternateColorCodes('&', " &ehas been set to &6&oDay!")));
 					p.closeInventory();
 					return;
 				}
@@ -234,7 +206,7 @@ public class CPMenuEvent implements Listener{
 		if(event.getCurrentItem().equals(night)) {
 			if(!p.hasPermission("Controller.cp.night")) {
 				p.closeInventory();
-				p.sendMessage(Info.prefix_Permission + info.permissionError());
+				p.sendMessage(prefix_Permission +permissionError());
 				return;
 			}else {
 				if(event.isRightClick() || event.isLeftClick() || event.isShiftClick()) {
@@ -242,7 +214,7 @@ public class CPMenuEvent implements Listener{
 					
 					
 					p.getWorld().setTime(13000);
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Plugin+"&6&lThe time in the &bWorld: " + p.getWorld().getName() + ChatColor.translateAlternateColorCodes('&', " &ehas been set to &9&oNight!")));
+					p.sendMessage(ChatColor.translateAlternateColorCodes('&',prefix_Plugin+"&6&lThe time in the &bWorld: " + p.getWorld().getName() + ChatColor.translateAlternateColorCodes('&', " &ehas been set to &9&oNight!")));
 					p.closeInventory();
 					return;
 				}
@@ -251,7 +223,7 @@ public class CPMenuEvent implements Listener{
 		if(event.getCurrentItem().equals(sun)) {
 			if(!p.hasPermission("Controller.cp.sun")) {
 				p.closeInventory();
-				p.sendMessage(Info.prefix_Permission + info.permissionError());
+				p.sendMessage(prefix_Permission + permissionError());
 				return;
 			}else {
 				if(event.isRightClick() || event.isLeftClick() || event.isShiftClick()) {
@@ -259,7 +231,7 @@ public class CPMenuEvent implements Listener{
 					
 					p.getWorld().setStorm(false);
 					//player.getWorld().setWeatherDuration(100);
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Plugin+"&6&lThe Weather in the &bWorld: " + p.getWorld().getName() + ChatColor.translateAlternateColorCodes('&', " &ehas been set to &6&oClear!")));
+					p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix_Plugin+"&6&lThe Weather in the &bWorld: " + p.getWorld().getName() + ChatColor.translateAlternateColorCodes('&', " &ehas been set to &6&oClear!")));
 					p.closeInventory();
 					return;
 				}
@@ -267,14 +239,14 @@ public class CPMenuEvent implements Listener{
 		}
 		if(event.getCurrentItem().equals(rain)) {
 			if(!p.hasPermission("Controller.cp.rain")) {
-				p.sendMessage(Info.prefix_Permission + info.permissionError());
+				p.sendMessage(prefix_Permission + permissionError());
 				return;
 			}else {
 				if(event.isRightClick() || event.isLeftClick() || event.isShiftClick()) {
 					event.setCancelled(true);
 					
 					p.getWorld().setStorm(true);
-					p.sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Plugin+"&6&lThe Weather in the &bWorld: " + p.getWorld().getName() + ChatColor.translateAlternateColorCodes('&', " &ehas been set to &6&oRainy!")));
+					p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix_Plugin+"&6&lThe Weather in the &bWorld: " + p.getWorld().getName() + ChatColor.translateAlternateColorCodes('&', " &ehas been set to &6&oRainy!")));
 					p.closeInventory();
 					return;
 				}
@@ -294,7 +266,7 @@ public class CPMenuEvent implements Listener{
 		}
 		if(event.getCurrentItem().equals(stop)) {
 			if(!p.hasPermission("Controller.cp.admin.stop")) {
-				p.sendMessage(Info.prefix_Permission + info.permissionError());
+				p.sendMessage(prefix_Permission + permissionError());
 				return;
 			}else {
 				if(event.isRightClick() || event.isLeftClick() || event.isShiftClick()) {
@@ -302,7 +274,7 @@ public class CPMenuEvent implements Listener{
 					
 					p.closeInventory();
 					Bukkit.getServer().shutdown();
-					Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Plugin+"&4&oCP &a&l> &c&oShutting down..."));
+					Bukkit.broadcastMessage(ChatColor.translateAlternateColorCodes('&', prefix_Plugin+"&4&oCP &a&l> &c&oShutting down..."));
 					return;
 				}
 			}
@@ -311,7 +283,7 @@ public class CPMenuEvent implements Listener{
 			if(!p.hasPermission("Controller.cp.admin.reload")) {
 				event.setCancelled(true);
 				
-				p.sendMessage(Info.prefix_Permission + info.permissionError());
+				p.sendMessage(prefix_Permission + permissionError());
 				return;
 			}else {
 				if(event.isLeftClick() || event.isRightClick() || event.isShiftClick()) {
@@ -319,14 +291,14 @@ public class CPMenuEvent implements Listener{
 					
 					p.closeInventory();
 					Bukkit.getServer().reload();
-					Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Plugin+" &6&oServer is &c&nRestarting...!"));
+					Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&',prefix_Plugin+" &6&oServer is &c&nRestarting...!"));
 					return;
 				}
 			}
 		}
 		if(event.getCurrentItem().equals(reloadConfig)) {
 			if(!p.hasPermission("Controller.cp.admin.config")) {
-				p.sendMessage(Info.prefix_Permission + info.permissionError());
+				p.sendMessage(prefix_Permission + permissionError());
 				return;
 			}else {
 				if(event.isRightClick() || event.isLeftClick() || event.isShiftClick()) {
@@ -334,7 +306,7 @@ public class CPMenuEvent implements Listener{
 					
 				p.closeInventory();
 				sm.reloadConfig();
-				p.sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Plugin+" &eServer &6Configuration &cFile &bhas been &a&oReloaded..."));
+				p.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix_Plugin+" &eServer &6Configuration &cFile &bhas been &a&oReloaded..."));
 				return;
 				}
 			}

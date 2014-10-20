@@ -1,26 +1,24 @@
 package controller.commands;
 
+import com.enjin.es359.Inform;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
-import com.enjin.es359.Info;
 import com.enjin.es359.SettingsManager;
 
-public class SetMotdCommand implements CommandExecutor{
+public class SetMotdCommand extends Inform implements CommandExecutor{
 
 
 
 	SettingsManager sm = SettingsManager.getControllerInstance();
-	
-	Info info = new Info();
-	
+
 	public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String args[]) {
 		
 		if(cmd.getName().equalsIgnoreCase("setmotd")) {
-			if(!sender.hasPermission("Controller.cmd.setMotd")) {
-				sender.sendMessage(Info.prefix_Permission + info.permissionError());
+			if(!sender.hasPermission("Controller.cmd.setmotd")) {
+				sender.sendMessage(prefix_Permission + permissionError());
 				return true;
 			}
 			if(args.length ==0) {

@@ -54,3 +54,10 @@ Database:
   password: 'admin'
   database: 'mcAdmin'
 restricted-msg: "&c&oYou have been &4&nRestricted &cand not allowed to &4Move&c."
+restriction-msg: "&6&lThis command has been restricted by an &4Administrator&6."
+blocked-cmds:
+  - /pl
+  - /plugins
+  - /about
+  - /bukkit
+  - /?

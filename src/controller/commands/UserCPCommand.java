@@ -1,7 +1,7 @@
 package controller.commands;
 
 
-import com.enjin.es359.Info;
+import com.enjin.es359.Functions;
 import com.enjin.es359.Inform;
 import com.enjin.es359.SettingsManager;
 
@@ -17,24 +17,18 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
 
-public class UserCPCommand implements CommandExecutor, Listener{
+public class UserCPCommand extends Inform implements CommandExecutor, Listener{
 
 
 
     SettingsManager sm = SettingsManager.getControllerInstance();
+
+  Functions f = Functions.getInstance();
+
    // public Controller c;
     Inform inform = new Inform();
     Player target;
 
-    /**
-     * Need to upgrade how we do permissions.
-     * Permission class, that returns all permissions.
-     * @param sender
-     * @param cmd
-     * @param commandLabel
-     * @param args
-     * @return
-     */
 
     public UserCPCommand(Plugin p) {
         Bukkit.getServer().getPluginManager().registerEvents(this, p);
@@ -137,104 +131,6 @@ public class UserCPCommand implements CommandExecutor, Listener{
      *
      */
 
-    private void tp() {
-        //Add permission checks here later.
-
-        Location l = target.getLocation();
-        pclick.teleport(l);
-        pclick.sendMessage(inform.tp() +target.getName());
-    }
-
-//Method complete.
-
-
-    private void tphere() {
-
-//Add permission checks here later.
-
-        target.teleport(pclick);
-        pclick.sendMessage(inform.tp() +target.getName());
-        target.sendMessage(inform.tphere());
-    }
-
-    private void kill() {
-        target.setHealth(0.0);
-        target.sendMessage(inform.kill());
-        pclick.sendMessage(inform.kill2() + target.getName());
-    }
-
-    private void cr() {
-
-        //Add permission checks here later.
-
-        target.setGameMode(GameMode.CREATIVE);
-        target.sendMessage(inform.playerCR());
-        pclick.sendMessage(inform.adminCR() + target.getName());
-    }
-
-    private void su() {
-        target.setGameMode(GameMode.SURVIVAL);
-        target.sendMessage(inform.playerSU());
-        pclick.sendMessage(inform.adminSU() + target.getName());
-    }
-
-    private void ad() {
-        target.setGameMode(GameMode.ADVENTURE);
-        target.sendMessage(inform.playerAD());
-        pclick.sendMessage(inform.adminAD() + target.getName());
-    }
-
-    private void heal() {
-        target.setHealth(20.0);
-        target.sendMessage(inform.playerHeal());
-        pclick.sendMessage(inform.adminHeal() + target.getName());
-    }
-
-    private void enableFly() {
-        target.setAllowFlight(true);
-        target.setFlying(true);
-        pclick.sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Plugin+" &7You have set fly mode to &aTrue&7, for &c," +target.getName()));
-
-    }
-
-    private void disableFly() {
-        target.setAllowFlight(false);
-        target.setFlying(false);
-        pclick.sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Plugin+" &7You have set fly mode to &4False&7, for &c," +target.getName()));
-    }
-
-    private void pday() {
-        pclick.sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Plugin+" &6&lThe &ePlayer &6time in the &bWorld: " + pclick.getWorld().getName() + ChatColor.translateAlternateColorCodes('&', " &ehas been set to &6&oDay!")));
-
-        target.setPlayerTime(1000, true);
-    }
-
-    private void pnight() {
-        target.setPlayerTime(13000, true);
-        pclick.sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Plugin+" &6&lThe &ePlayer &6time in the &bWorld: " + pclick.getWorld().getName() + ChatColor.translateAlternateColorCodes('&', " &ehas been set to &9&oNight!")));
-    }
-
-    private void pSun() {
-        pclick.sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Plugin+" &6&lThe &aPlayer &6&lWeather in the &bWorld: " + pclick.getWorld().getName() + ChatColor.translateAlternateColorCodes('&', " &ehas been set to &6&oClear!")));
-
-        target.setPlayerWeather(WeatherType.CLEAR);
-    }
-
-    private void pRain() {
-        pclick.sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Plugin+" &6&lThe &aPlayer &6&lWeather in the &bWorld: " + pclick.getWorld().getName() + ChatColor.translateAlternateColorCodes('&', " &ehas been set to &7&oRainy!")));
-
-        target.setPlayerWeather(WeatherType.DOWNFALL);
-    }
-
-
-    public void close()
-    {
-        pclick.closeInventory();
-        return;
-    }
-
-
-
     Player pclick;
     @EventHandler
     public void invListener(InventoryClickEvent event) {
@@ -264,7 +160,7 @@ public class UserCPCommand implements CommandExecutor, Listener{
 
                 event.setCancelled(true);
 
-                tp();
+                f.tp(target, pclick);
 
             }
          }
@@ -274,7 +170,7 @@ public class UserCPCommand implements CommandExecutor, Listener{
             if(event.isRightClick() || event.isLeftClick() || event.isShiftClick()) {
                 event.setCancelled(true);
 
-                tphere();
+                f.tphere(target,pclick);
             }
         }
 
@@ -284,7 +180,7 @@ public class UserCPCommand implements CommandExecutor, Listener{
             if(event.isRightClick() || event.isLeftClick() || event.isShiftClick())
             {
                 event.setCancelled(true);
-                cr();
+                f.cr(target, pclick);
                 return;
             }
             return;
@@ -294,7 +190,7 @@ public class UserCPCommand implements CommandExecutor, Listener{
             if(event.isRightClick() || event.isLeftClick() || event.isShiftClick())
             {
                 event.setCancelled(true);
-                su();
+                f.su(target, pclick);
                 return;
             }
             return;
@@ -304,7 +200,9 @@ public class UserCPCommand implements CommandExecutor, Listener{
             if(event.isRightClick() || event.isLeftClick() || event.isShiftClick())
             {
                 event.setCancelled(true);
-                ad();
+                f.ad(target, pclick
+
+                );
                 return;
             }
             return;
@@ -315,7 +213,7 @@ public class UserCPCommand implements CommandExecutor, Listener{
             if(event.isRightClick() || event.isLeftClick() || event.isShiftClick())
             {
                 event.setCancelled(true);
-                heal();
+                f.heal(target, pclick);
             }
         }
 
@@ -324,13 +222,13 @@ public class UserCPCommand implements CommandExecutor, Listener{
                 event.setCancelled(true);
             }else if(event.isRightClick()) {
                 event.setCancelled(true);
-                enableFly();
-                close();
+                f.enableFly(target, pclick);
+                f.close(pclick);
                 return;
             }else if(event.isLeftClick()) {
                 event.setCancelled(true);
-                disableFly();
-                close();
+                f.disableFly(target, pclick);
+                f.close(pclick);
             }
         }
 
@@ -340,14 +238,14 @@ public class UserCPCommand implements CommandExecutor, Listener{
             }else {
                 if(event.isRightClick()) {
                     event.setCancelled(true);
-                    pday();
-                    close();
+                    f.pday(target, pclick);
+                    f.close(pclick);
                    // pclick.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lThe &ePlayer &6time in the &bWorld: " + pclick.getWorld().getName() + ChatColor.translateAlternateColorCodes('&', " &ehas been set to &6&oDay!")));
                     return;
                 }else if(event.isLeftClick()) {
                     event.setCancelled(true);
-                    pnight();
-                    close();
+                    f.pnight(target, pclick);
+                    f.close(pclick);
                    // pclick.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lThe &ePlayer &6time in the &bWorld: " + pclick.getWorld().getName() + ChatColor.translateAlternateColorCodes('&', " &ehas been set to &9&oNight!")));
                     return;
                 }
@@ -360,14 +258,14 @@ public class UserCPCommand implements CommandExecutor, Listener{
             }else {
                 if(event.isRightClick()) {
                     event.setCancelled(true);
-                    pSun();
-                    close();
+                   f.pSun(target, pclick);
+                    f.close(pclick);
                     //pclick.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lThe &aPlayer &6&lWeather in the &bWorld: " + pclick.getWorld().getName() + ChatColor.translateAlternateColorCodes('&', " &ehas been set to &6&oClear!")));
                     return;
                 }else if(event.isLeftClick()) {
                     event.setCancelled(true);
-                    pRain();
-                    close();
+                    f.pRain(target, pclick);
+                    f.close(pclick);
                     //pclick.sendMessage(ChatColor.translateAlternateColorCodes('&', "&6&lThe &aPlayer &6&lWeather in the &bWorld: " + pclick.getWorld().getName() + ChatColor.translateAlternateColorCodes('&', " &ehas been set to &7&oRainy!")));
                     return;
                 }
@@ -377,9 +275,9 @@ public class UserCPCommand implements CommandExecutor, Listener{
            if(event.getCurrentItem().equals(kill)) {
                if(event.isRightClick() || event.isLeftClick() || event.isShiftClick()) {
                    event.setCancelled(true);
-                   kill();
+                   f.kill(target, pclick);
                }
            }
-    }
+       }
 }
 

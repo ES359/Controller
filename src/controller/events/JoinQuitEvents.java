@@ -7,15 +7,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
-import com.enjin.es359.Info;
 import com.enjin.es359.SettingsManager;
 
 public class JoinQuitEvents implements Listener{
 
 	SettingsManager sm = SettingsManager.getControllerInstance();
-	
-	Info info = new Info();
-	
 	
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {

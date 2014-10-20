@@ -34,6 +34,10 @@ commands:
   restrict:
     description: Main command to Restrict a Player.
 
+  permissions:
+    description: Main command to display permissions.
+
+
 permissions:
   Controller.*:
     description: Gives access to all Controller permissions.

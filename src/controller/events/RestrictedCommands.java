@@ -1,7 +1,8 @@
 package controller.events;
 
-import com.enjin.es359.Info;
+import com.enjin.es359.Inform;
 import com.enjin.es359.SettingsManager;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,26 +12,56 @@ import java.util.List;
 
 /**
  * Created by ES359 on 9/29/14.
+   Contributed: http://forums.bukkit.org/members/ferusgrim.90872703/
  */
-public class RestrictedCommands implements Listener {
+public class RestrictedCommands extends Inform implements Listener {
 
     SettingsManager sm = SettingsManager.getControllerInstance();
-
-    Info i = new Info();
 
     @EventHandler
     public void commandProcess(PlayerCommandPreprocessEvent event) {
 
-        Player p = event.getPlayer();
+        String denied = sm.getConfig().getString("restriction-msg");
 
-        List<String> blockedcmds = sm.getConfig().getStringList("restricted-cmds");
+        denied = denied.replaceAll("%playername%", event.getPlayer().getName());
 
 
-        String msg = event.getMessage();
 
-        for(int i=0; i <blockedcmds.size(); i++) {
 
+        String message[] = event.getMessage().split(" ");
+            String command = message[0];
+            List<String> denyList = sm.getConfig().getStringList("blocked-cmds");
+
+            if (denyList.contains(command)) {
+                event.setCancelled(true);
+                event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', denied));
+
+            }
+
+
+        /**
+
+        List<String> c = sm.getConfig().getStringList("blocked-cmds");
+
+        if(c.contains(event.getMessage().split(" ", 1))) {
+            event.setCancelled(true);
+
+        }else if(event.getPlayer().hasPermission("Controller.event.commandbypass") || event.getPlayer().isOp()) {
+            event.setCancelled(false);
         }
+    }
 
+    /**
+     * @EventHandler
+    public void commandProcess(PlayerCommandPreprocessEvent event) {
+    String message[] = event.getMessage().split(" ");
+    String command = message[0];
+    List<String> denyList = sm.getConfig().getStringList("blocked-cmds");
+
+    if (denyList.contains(command)) {
+    event.setCancelled(true);
+    }
+    }
+     */
     }
 }

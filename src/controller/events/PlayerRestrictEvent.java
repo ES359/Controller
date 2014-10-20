@@ -1,6 +1,5 @@
 package controller.events;
 
-import com.enjin.es359.Info;
 import com.enjin.es359.SettingsManager;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -14,10 +13,6 @@ import org.bukkit.event.player.PlayerMoveEvent;
 public class PlayerRestrictEvent implements Listener {
 
     SettingsManager sm = SettingsManager.getControllerInstance();
-
-    Info i = new Info();
-
-
 
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent event)

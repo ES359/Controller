@@ -1,6 +1,5 @@
 package controller.events;
 
-import com.enjin.es359.Info;
 import com.enjin.es359.SettingsManager;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -13,9 +12,17 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
  */
 public class ChatEvent implements Listener {
 
+    public ChatEvent() {}
+
+    static ChatEvent chatInstance = new ChatEvent();
+
+    public static ChatEvent getChatInstance() {
+        return chatInstance;
+    }
+
     SettingsManager sm = SettingsManager.getControllerInstance();
 
-    Info i = new Info();
+
     public  boolean enabled = sm.getConfig().getBoolean("custom-chat.Enabled");
 
     public boolean returnValue() {
@@ -31,6 +38,10 @@ public class ChatEvent implements Listener {
 
         if(enabled) {
 
+            /**
+             * Add more features.
+             */
+
             String name = sm.getConfig().getString("custom-chat.Format");
                 name = name.replaceAll("%username%", player.getName());
 
@@ -39,6 +50,41 @@ public class ChatEvent implements Listener {
                     name = name.replaceAll("%world%", player.getWorld().getName());
 
                    event.setFormat(ChatColor.translateAlternateColorCodes('&',name));
-        }//End of boolean expression.
+        }
+
+        //End of boolean expression.
     }
+
+    public boolean chatEnabled;
+
+    public boolean returnChatEnabled() {
+        return chatEnabled;
+    }
+
+    public void setChatEnabled(boolean val) {
+        chatEnabled = val;
+    }
+
+    @EventHandler
+    public void chatEnable(AsyncPlayerChatEvent event) {
+
+        Player pl = event.getPlayer();
+
+        if(returnChatEnabled()) {
+            if(!pl.hasPermission("Controller.event.chatbypass")) {
+                event.setCancelled(true);
+
+                String conf = sm.getConfig().getString("chat-disabled.msg");
+                conf = conf.replaceAll("%playername%", pl.getName());
+
+                pl.sendMessage(ChatColor.translateAlternateColorCodes('&',conf));
+            }else {
+
+                event.setCancelled(false);
+            }
+        }
+
+    }
+
+
 }

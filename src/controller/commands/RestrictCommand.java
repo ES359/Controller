@@ -1,6 +1,6 @@
 package controller.commands;
 
-import com.enjin.es359.Info;
+import com.enjin.es359.Inform;
 import com.enjin.es359.SettingsManager;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -11,32 +11,27 @@ import org.bukkit.entity.Player;
 /**
  * Created by ES359 on 9/23/14.
  */
-public class RestrictCommand implements CommandExecutor{
+public class RestrictCommand extends Inform implements CommandExecutor{
 
     SettingsManager sm = SettingsManager.getControllerInstance();
 
-    Info i = new Info();
-
-
-
     public boolean onCommand(CommandSender sender, Command cmd, String commandLabel, String args[]) {
-
 
         if(cmd.getName().equalsIgnoreCase("restrict"))
         {
             if(!sender.hasPermission("Controller.cmd.Resrict"))
             {
-                sender.sendMessage(i.permissionError());
+                sender.sendMessage(permissionError());
                 //return  true;
             }else {
                 if(args.length == 0)
                 {
-                    sender.sendMessage(i.returnArgumentError());
+                    sender.sendMessage(returnArgumentError());
                 }else if(args.length == 1) {
                    Player target = Bukkit.getServer().getPlayer(args[0]);
 
                     if (target == null){
-                        sender.sendMessage(Info.prefix_error + i.playerNotFound());
+                        sender.sendMessage(prefix_error + playerNotFound());
                    }
 
                     else {
@@ -44,13 +39,13 @@ public class RestrictCommand implements CommandExecutor{
                         if(sm.restricted.contains(target.getName()))
                         {
                             sm.restricted.remove(target.getName());
-                            sender.sendMessage(i.returnRestriction() +" "+ target.getName());
-                            target.sendMessage(i.returnRestrictionFalseToPlayer() +" "+target.getName());
+                            sender.sendMessage(returnRestriction() +" "+ target.getName());
+                            target.sendMessage(returnRestrictionFalseToPlayer() +" "+target.getName());
                         }else
                         {
                             sm.restricted.add(target.getName());
-                            sender.sendMessage( i.returnRestrictionTrueAdmin() + " " +target.getName());
-                            target.sendMessage( i.returnRestrictionTrueToPlayer() +" "+ target.getName());
+                            sender.sendMessage( returnRestrictionTrueAdmin() + " " +target.getName());
+                            target.sendMessage( returnRestrictionTrueToPlayer() +" "+ target.getName());
                         }
                     }
                 }

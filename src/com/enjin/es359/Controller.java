@@ -10,9 +10,9 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class Controller extends JavaPlugin{
 
+    Inform i = new Inform();
 	
 	SettingsManager sm = SettingsManager.getControllerInstance();
-    Info i = new Info();
 
 	public CPMenuEvent cpm;
 	
@@ -48,7 +48,7 @@ public class Controller extends JavaPlugin{
        }
 
         if(returnEnabled() == true) {
-            Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', Info.prefix_Plugin +"&4&oWARNING &3&lSQL &6Has not been implemented, and is under &cConstruction!"));
+            Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', Inform.prefix_Plugin +"&4&oWARNING &3&lSQL &6Has not been implemented, and is under &cConstruction!"));
         }
 
 
@@ -61,7 +61,7 @@ public class Controller extends JavaPlugin{
 
 		cpm = new CPMenuEvent(this, this);
 
-        cc = new ChatCommand(cpm);
+        cc = new ChatCommand();
 
 
         PluginManager pm = Bukkit.getServer().getPluginManager();
@@ -75,7 +75,7 @@ public class Controller extends JavaPlugin{
 		pm.registerEvents(new WhitelistEvent(), this);
         pm.registerEvents(new ChatEvent(), this);
         pm.registerEvents(new PlayerRestrictEvent(), this);
-
+        pm.registerEvents(new RestrictedCommands(), this);
 		registerAllCommands();
 	}
 
@@ -97,8 +97,9 @@ public class Controller extends JavaPlugin{
 		registerCmd("kickmsg", new KickMsgCommand());
 		registerCmd("setkickmsg", new SetkickMsgCommand());
 		registerCmd("usercp", new UserCPCommand(this));
-        registerCmd("chat", new ChatCommand(cpm));
+        registerCmd("chat", new ChatCommand());
         registerCmd("restrict", new RestrictCommand());
+        registerCmd("permissions", new PermissionsCommand());
 	}
 	
 	public void registerCmd(String command, CommandExecutor commandExecutor)
