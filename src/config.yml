@@ -61,3 +61,6 @@ blocked-cmds:
   - /about
   - /bukkit
   - /?
+custom-chat:
+  Enabled: true
+  Format: "&9&oChat&c> &a[%world%&a] &b&o%username% &7%message%"

@@ -1,38 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3c88ca81-7ede-4600-8496-486538a2d41a" name="Default" comment="Updated Code.">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/enjin/es359/Functions.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/com/enjin/es359/MenuFunction.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/controller/commands/PermissionsCommand.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/craftbukkit.xml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/com/enjin/es359/Info.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/commands/AlertCommand.java" afterPath="$PROJECT_DIR$/src/controller/commands/AlertCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/commands/CPCommand.java" afterPath="$PROJECT_DIR$/src/controller/commands/CPCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/events/CPMenuEvent.java" afterPath="$PROJECT_DIR$/src/controller/events/CPMenuEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/commands/ChatCommand.java" afterPath="$PROJECT_DIR$/src/controller/commands/ChatCommand.java" />
+    <list default="true" id="3c88ca81-7ede-4600-8496-486538a2d41a" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/events/ChatEvent.java" afterPath="$PROJECT_DIR$/src/controller/events/ChatEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Controller.iml" afterPath="$PROJECT_DIR$/Controller.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/enjin/es359/Controller.java" afterPath="$PROJECT_DIR$/src/com/enjin/es359/Controller.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/enjin/es359/Inform.java" afterPath="$PROJECT_DIR$/src/com/enjin/es359/Inform.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/events/JoinQuitEvents.java" afterPath="$PROJECT_DIR$/src/controller/events/JoinQuitEvents.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/commands/KickMsgCommand.java" afterPath="$PROJECT_DIR$/src/controller/commands/KickMsgCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/commands/MOTDCommand.java" afterPath="$PROJECT_DIR$/src/controller/commands/MOTDCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/enjin/es359/Permissions.java" afterPath="$PROJECT_DIR$/src/com/enjin/es359/Permissions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/events/PlayerRestrictEvent.java" afterPath="$PROJECT_DIR$/src/controller/events/PlayerRestrictEvent.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/commands/RestrictCommand.java" afterPath="$PROJECT_DIR$/src/controller/commands/RestrictCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/events/RestrictedCommands.java" afterPath="$PROJECT_DIR$/src/controller/events/RestrictedCommands.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/enjin/es359/SQL.java" afterPath="$PROJECT_DIR$/src/com/enjin/es359/SQL.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/commands/SetListMotdCommand.java" afterPath="$PROJECT_DIR$/src/controller/commands/SetListMotdCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/commands/SetMotdCommand.java" afterPath="$PROJECT_DIR$/src/controller/commands/SetMotdCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/commands/SetkickMsgCommand.java" afterPath="$PROJECT_DIR$/src/controller/commands/SetkickMsgCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/enjin/es359/SettingsManager.java" afterPath="$PROJECT_DIR$/src/com/enjin/es359/SettingsManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/commands/UserCPCommand.java" afterPath="$PROJECT_DIR$/src/controller/commands/UserCPCommand.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/events/WhitelistEvent.java" afterPath="$PROJECT_DIR$/src/controller/events/WhitelistEvent.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/com/enjin/es359/Functions.java" afterPath="$PROJECT_DIR$/src/com/enjin/es359/Functions.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config.yml" afterPath="$PROJECT_DIR$/src/config.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/plugin.yml" afterPath="$PROJECT_DIR$/src/plugin.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Controller.iws" />
@@ -126,26 +98,22 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PermissionsCommand.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controller/commands/PermissionsCommand.java">
+      <file leaf-file-name="config.yml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/config.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
-              <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.7282609" vertical-offset="513" max-vertical-offset="1065">
+              <caret line="61" column="11" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="11" />
+              <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Functions.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/enjin/es359/Functions.java">
+      <file leaf-file-name="ChatEvent.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/controller/events/ChatEvent.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.11734029" vertical-offset="0" max-vertical-offset="1710">
-              <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="1245">
+              <caret line="25" column="57" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="68" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -184,7 +152,6 @@
         <option value="$PROJECT_DIR$/src/controller/events/WhitelistEvent.java" />
         <option value="$PROJECT_DIR$/src/controller/commands/RestrictCommand.java" />
         <option value="$PROJECT_DIR$/src/com/enjin/es359/Functions.java" />
-        <option value="$PROJECT_DIR$/src/config.yml" />
         <option value="$PROJECT_DIR$/src/com/enjin/es359/Inform.java" />
         <option value="$PROJECT_DIR$/src/controller/commands/SetMotdCommand.java" />
         <option value="$PROJECT_DIR$/src/plugin.yml" />
@@ -196,6 +163,7 @@
         <option value="$PROJECT_DIR$/src/com/enjin/es359/Permissions.java" />
         <option value="$PROJECT_DIR$/src/com/enjin/es359/SettingsManager.java" />
         <option value="$PROJECT_DIR$/src/controller/events/ChatEvent.java" />
+        <option value="$PROJECT_DIR$/src/config.yml" />
       </list>
     </option>
   </component>
@@ -532,6 +500,11 @@
       <workItem from="1411596914630" duration="15099000" />
       <workItem from="1412910806227" duration="1433000" />
     </task>
+    <task id="LOCAL-00001" summary="Updated Code.">
+      <created>1413821388294</created>
+      <updated>1413821388294</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -559,7 +532,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="34" y="23" width="1406" height="877" extended-state="6" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -571,13 +544,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3279703" sideWeight="0.50036687" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25123763" sideWeight="0.49963316" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.25123763" sideWeight="0.49963316" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32951653" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21408251" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21408251" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32967034" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -878,26 +851,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-22.12" vertical-offset="287" max-vertical-offset="1020">
-          <caret line="56" column="79" selection-start-line="56" selection-start-column="79" selection-end-line="56" selection-end-column="79" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/controller/commands/AlertCommand.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.009234829" vertical-offset="292" max-vertical-offset="1050">
           <caret line="26" column="20" selection-start-line="26" selection-start-column="20" selection-end-line="26" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/commands/SetMotdCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="735">
-          <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="60" />
           <folding />
         </state>
       </provider>
@@ -1018,19 +975,39 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/events/ChatEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.26923078" vertical-offset="465" max-vertical-offset="1245">
-          <caret line="54" column="36" selection-start-line="54" selection-start-column="36" selection-end-line="54" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/enjin/es359/Inform.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="20" max-vertical-offset="2895">
           <caret line="21" column="0" selection-start-line="21" selection-start-column="0" selection-end-line="21" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/commands/SetMotdCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2542373" vertical-offset="0" max-vertical-offset="767">
+          <caret line="19" column="38" selection-start-line="19" selection-start-column="38" selection-end-line="19" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/enjin/es359/Functions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.46936116" vertical-offset="0" max-vertical-offset="1710">
+          <caret line="26" column="42" selection-start-line="26" selection-start-column="42" selection-end-line="26" selection-end-column="42" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/controller/commands/PermissionsCommand.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5" vertical-offset="0" max-vertical-offset="780">
+          <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1042,23 +1019,19 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/controller/commands/PermissionsCommand.java">
+    <entry file="file://$PROJECT_DIR$/src/controller/events/ChatEvent.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="585">
-          <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.0" vertical-offset="120" max-vertical-offset="1245">
+          <caret line="25" column="57" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="68" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/enjin/es359/Functions.java">
+    <entry file="file://$PROJECT_DIR$/src/config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11734029" vertical-offset="0" max-vertical-offset="1710">
-          <caret line="6" column="32" selection-start-line="6" selection-start-column="32" selection-end-line="6" selection-end-column="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state vertical-scroll-proportion="0.7282609" vertical-offset="513" max-vertical-offset="1065">
+          <caret line="61" column="11" selection-start-line="61" selection-start-column="11" selection-end-line="61" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>

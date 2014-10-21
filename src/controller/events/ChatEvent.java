@@ -43,12 +43,12 @@ public class ChatEvent implements Listener {
              */
 
             String name = sm.getConfig().getString("custom-chat.Format");
-                name = name.replaceAll("%username%", player.getName());
-
-                  name = name.replaceAll("%message%", event.getMessage());
-
+                    name = name.replaceAll("%username%", player.getName());
+                    name = name.replaceAll("%message%", event.getMessage());
                     name = name.replaceAll("%world%", player.getWorld().getName());
-
+                    name = name.replaceAll("%UUID%", "" + player.getUniqueId());
+                    name = name.replaceAll("%IP%", "" +player.getAddress());
+                    
                    event.setFormat(ChatColor.translateAlternateColorCodes('&',name));
         }
 
