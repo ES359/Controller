@@ -1,6 +1,8 @@
 package controller.events;
 
 import com.enjin.es359.SettingsManager;
+import controller.SQL.SQLChat;
+import controller.SQL.SQLFunctions;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -22,6 +24,7 @@ public class ChatEvent implements Listener {
 
     SettingsManager sm = SettingsManager.getControllerInstance();
 
+    SQLChat chat = SQLChat.getInstance();
 
     public  boolean enabled = sm.getConfig().getBoolean("custom-chat.Enabled");
 
@@ -48,11 +51,16 @@ public class ChatEvent implements Listener {
                     name = name.replaceAll("%world%", player.getWorld().getName());
                     name = name.replaceAll("%UUID%", "" + player.getUniqueId());
                     name = name.replaceAll("%IP%", "" +player.getAddress());
-                    
+
                    event.setFormat(ChatColor.translateAlternateColorCodes('&',name));
         }
 
-        //End of boolean expression.
+        if(chat.logChat) {
+            chat.logPlayerChat(player, "");
+        }
+
+
+
     }
 
     public boolean chatEnabled;

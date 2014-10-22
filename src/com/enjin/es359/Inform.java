@@ -1,5 +1,6 @@
 package com.enjin.es359;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 public class Inform {
 
@@ -19,7 +20,7 @@ public class Inform {
     static public final String prefix_Console = ChatColor.translateAlternateColorCodes('&', "&d&oConsole &b&l> ");
     static public final String prefix_argsError = ChatColor.translateAlternateColorCodes('&', "&c&oArguments &b&l> ");
     static public final String prefix_Plugin = ChatColor.translateAlternateColorCodes('&', "&8&oController &a&l> ");
-
+    static public final String sql_prefix = ChatColor.translateAlternateColorCodes('&',"&8SQL&c>");
 
     public String permissionError() {
         return ChatColor.translateAlternateColorCodes('&', "&7You don't have permission for this.");
@@ -150,6 +151,14 @@ public class Inform {
 
     public String connectionErrorInform() {
         return ChatColor.translateAlternateColorCodes('&',prefix_Plugin+"&c&lConnection Error, could not establish a &c&oconnection.");
+    }
+
+    public String SQLIsDisabled() {
+        return ChatColor.translateAlternateColorCodes('&',"&4Warning... &c&oSQL is disabled by default in &aConfig.");
+    }
+
+    public void LogToConsole(String l) {
+        Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', l));
     }
 
     /**

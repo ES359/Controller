@@ -1,26 +1,21 @@
-package com.enjin.es359;
+package controller.SQL;
 
+import com.enjin.es359.Inform;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.entity.Player;
-import org.bukkit.event.block.BlockPlaceEvent;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 /**
- * Created by ES359 on 9/21/14.
+ * Created by ES359 on 10/20/14.
  */
-public class SQL
-{
-
+public class SQLConnection {
     Inform i = new Inform();
 
-    public Connection c;
+   static public Connection c;
 
-    public SQL(String ip, String userName, String access, String db) {
+    public SQLConnection(String ip, String userName, String access, String db) {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -30,4 +25,12 @@ public class SQL
             Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.RED + "Connection Error.");
         }
     }
+
+   static public Connection getConnection() {
+        return c;
+    }
+
+
+
+
 }

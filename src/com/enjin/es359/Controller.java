@@ -1,5 +1,6 @@
 package com.enjin.es359;
 
+import controller.SQL.SQLConnection;
 import controller.commands.*;
 import controller.events.*;
 import org.bukkit.Bukkit;
@@ -8,7 +9,19 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.sql.Connection;
+import java.sql.SQLData;
+
 public class Controller extends JavaPlugin{
+
+    public Controller() {}
+
+    static public Controller instance = new Controller();
+
+    static public Controller getMainInstance() {
+        return instance;
+
+    }
 
     Inform i = new Inform();
 	
@@ -20,18 +33,20 @@ public class Controller extends JavaPlugin{
 
     public ChatCommand cc;
 
-    public SQL sql;
+    private SQLConnection sql;
 
 
     /**
      * SQL Configuration settings.
      */
 
+    /*
     private boolean sqlEnabled = getConfig().getBoolean("Database.Enabled");
     private String host = getConfig().getString("Database.host");
     private String username = getConfig().getString("Database.username");
     private String password = getConfig().getString("Database.password");
     private String database = getConfig().getString("Database.database");
+    */
 
     public void onEnable() {
 
@@ -43,24 +58,13 @@ public class Controller extends JavaPlugin{
          *
          */
 
-       if(sqlEnabled) {
-           sql = new SQL(host,username,password,database);
-       }
-
-        if(returnEnabled() == true) {
-            Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', Inform.prefix_Plugin +"&4&oWARNING &3&lSQL &6Has not been implemented, and is under &cConstruction!"));
-        }
 
 
         Bukkit.getServer().getConsoleSender().sendMessage(i.ConsoleEnabled());
 		
 		sm.configSetup(this);
-
-
         ucp = new UserCPCommand(this);
-
 		cpm = new CPMenuEvent(this, this);
-
         cc = new ChatCommand();
 
 
@@ -79,12 +83,10 @@ public class Controller extends JavaPlugin{
 		registerAllCommands();
 	}
 
-    public boolean returnEnabled() {
-        return sqlEnabled;
-    }
-	
+
 	public void onDisable() {	
-		Bukkit.getServer().getConsoleSender().sendMessage(i.ConsoleDisabled());
+
+        Bukkit.getServer().getConsoleSender().sendMessage(i.ConsoleDisabled());
 	}
 	
 
@@ -106,5 +108,9 @@ public class Controller extends JavaPlugin{
 	{
 		Bukkit.getServer().getPluginCommand(command).setExecutor(commandExecutor);
 	}
-	
+
+     public SQLConnection getSQL() {
+        return sql;
+    }
+
 }
