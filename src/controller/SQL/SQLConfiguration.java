@@ -26,14 +26,15 @@ public class SQLConfiguration extends Inform {
 
 
 
-  private boolean sqlEnabled = sm.getConfig().getBoolean("Database.Enabled");
+    private boolean sqlEnabled = sm.getConfig().getBoolean("Database.Enabled");
     public String host = sm.getConfig().getString("Database.host");
     public String username = sm.getConfig().getString("Database.username");
     public String password = sm.getConfig().getString("Database.password");
     public String database = sm.getConfig().getString("Database.database");
-    public String tablechat = sm.getConfig().getString("Database.tables.chat");
-    public String tableplayer = sm.getConfig().getString("Database.tables.playerdata");
-    public String tableCmds = sm.getConfig().getString("Database.tables.commands");
+    public boolean tablechat = sm.getConfig().getBoolean("Table.chat");
+    public boolean tableplayer = sm.getConfig().getBoolean("Table.playerdata");
+    public boolean tableCmds = sm.getConfig().getBoolean("Table.commands");
+
 
     /**
      * SQL enabled Getter method.
@@ -46,13 +47,14 @@ public class SQLConfiguration extends Inform {
     }
 
 
-    public String getChatTable() {
-        return tablechat;
-    }
-    public String getTableplayer() {
+public boolean getTableChat() {
+    return tablechat;
+}
+    public boolean getTablePlayer() {
         return tableplayer;
     }
-    public String getTableCommands() {
+
+    public boolean getTableCmds() {
         return tableCmds;
     }
 

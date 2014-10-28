@@ -49,10 +49,15 @@ chat-disabled:
 ### ### ### ###
 Database:
   Enabled: false
-  host: '101.0.1'
-  username: 'root'
-  password: 'admin'
-  database: 'mcAdmin'
+  host: 10.0.0.1
+  username: admin
+  password: password
+  database: database1
+Table:
+  logchat: true
+  logcommands: true
+  logplayer: true
+
 restricted-msg: "&c&oYou have been &4&nRestricted &cand not allowed to &4Move&c."
 restriction-msg: "&6&lThis command has been restricted by an &4Administrator&6."
 blocked-cmds:

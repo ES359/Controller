@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import controller.SQL.SQL;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -34,6 +35,11 @@ public class SettingsManager {
 	Plugin plugin;
 	FileConfiguration config;
 	File file;
+    SQL sql;
+
+    public SQL getSql() {
+        return sql;
+    }
 	
 	public void configSetup(Plugin p){
 		config = p.getConfig();

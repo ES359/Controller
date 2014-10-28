@@ -1,62 +1,66 @@
 package com.enjin.es359;
 
-import controller.SQL.SQLConnection;
+import controller.SQL.*;
 import controller.commands.*;
 import controller.events.*;
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.sql.Connection;
-import java.sql.SQLData;
-
 public class Controller extends JavaPlugin{
 
-    public Controller() {}
 
-    static public Controller instance = new Controller();
-
-    static public Controller getMainInstance() {
-        return instance;
-
-    }
 
     Inform i = new Inform();
-	
 	SettingsManager sm = SettingsManager.getControllerInstance();
+    private boolean enabled =getConfig().getBoolean("Database.Enabled");
 
-	public CPMenuEvent cpm;
-	
-	public UserCPCommand ucp;
+    private CPMenuEvent cpm;
+	private UserCPCommand ucp;
+    private ChatCommand cc;
 
-    public ChatCommand cc;
+    public SQL sql;
 
-    private SQLConnection sql;
+    private CreateSQLTables f;
 
+
+    public boolean getEnabled() {
+        return enabled;
+    }
 
     /**
-     * SQL Configuration settings.
+     * http://zetcode.com/db/mysqljava/
+     *
+     * http://blog.lolmewn.nl/
+     *
+     * https://floobits.com/
+     *
+     * http://alvinalexander.com/java/java-timestamp-example-current-time-now
      */
 
-    /*
-    private boolean sqlEnabled = getConfig().getBoolean("Database.Enabled");
-    private String host = getConfig().getString("Database.host");
-    private String username = getConfig().getString("Database.username");
-    private String password = getConfig().getString("Database.password");
-    private String database = getConfig().getString("Database.database");
-    */
+
 
     public void onEnable() {
 
-        /**
-         * Implemented SQL System.
-         */
 
         /**
+         * SQL system.
          *
+         * Added boolean checking system.
          */
+
+        if(enabled) {
+            sql = new SQL(getConfig().getString("Database.host"), getConfig().getString("Database.username"), getConfig().getString("Database.password"), getConfig().getString("Database.database"));
+            f = new CreateSQLTables();
+            f.createTable(sql, getConfig().getBoolean("Table.logchat"), "CREATE TABLE IF NOT EXISTS chat (name varchar(50), UUID VARCHAR(50), World varchar(20), chat varchar(150), stamp varchar(50) );");
+            f.createTable(sql,getConfig().getBoolean("Table.logcommands"), "CREATE TABLE IF NOT EXISTS commands (name varchar(50), UUID varchar(50), command varchar(150), stamp varchar(50) );");
+            f.createTable(sql,getConfig().getBoolean("Table.logplayer"), "CREATE TABLE IF NOT EXISTS playertable (uuid VARCHAR(50), name VARCHAR(50), ip varchar(35), exp VARCHAR(50), world VARCHAR(25), location varchar(60), isOp varchar(10), whitelist varchar(10), stamp varchar(50) );");
+        }
+
+        if(enabled == false ){
+            i.logToConsole("&cSQL is disabled in &a&oconfiguration file!");
+        }
 
 
 
@@ -80,6 +84,9 @@ public class Controller extends JavaPlugin{
         pm.registerEvents(new ChatEvent(), this);
         pm.registerEvents(new PlayerRestrictEvent(), this);
         pm.registerEvents(new RestrictedCommands(), this);
+        pm.registerEvents(new SQLChat(this), this);
+        pm.registerEvents(new SQLCommands(this), this);
+        pm.registerEvents(new SQLJoin(this), this);
 		registerAllCommands();
 	}
 
@@ -108,9 +115,10 @@ public class Controller extends JavaPlugin{
 	{
 		Bukkit.getServer().getPluginCommand(command).setExecutor(commandExecutor);
 	}
-
-     public SQLConnection getSQL() {
+    /*
+    public SQL getSQL() {
         return sql;
     }
+    */
 
 }

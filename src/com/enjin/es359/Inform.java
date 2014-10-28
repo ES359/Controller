@@ -19,7 +19,7 @@ public class Inform {
     static public final String prefix_error = ChatColor.translateAlternateColorCodes('&', "&4&oError &b&l> ");
     static public final String prefix_Console = ChatColor.translateAlternateColorCodes('&', "&d&oConsole &b&l> ");
     static public final String prefix_argsError = ChatColor.translateAlternateColorCodes('&', "&c&oArguments &b&l> ");
-    static public final String prefix_Plugin = ChatColor.translateAlternateColorCodes('&', "&8&oController &a&l> ");
+    static public final String prefix_Plugin = ChatColor.translateAlternateColorCodes('&', "&a[&8&oCP&a] ");
     static public final String sql_prefix = ChatColor.translateAlternateColorCodes('&',"&8SQL&c>");
 
     public String permissionError() {
@@ -44,6 +44,9 @@ public class Inform {
     public String ConsoleDisabled() {
         return ChatColor.translateAlternateColorCodes('&',prefix_Plugin +"&cIs now &6&n&oDisabled&4.");
     }
+
+
+
 
     public String returnArgumentError()
     {
@@ -149,17 +152,21 @@ public class Inform {
 		return ChatColor.translateAlternateColorCodes('&', prefix_Plugin+" &cYou &ahealed the player &6, ");
 	}
 
+
+
     public String connectionErrorInform() {
         return ChatColor.translateAlternateColorCodes('&',prefix_Plugin+"&c&lConnection Error, could not establish a &c&oconnection.");
     }
 
     public String SQLIsDisabled() {
-        return ChatColor.translateAlternateColorCodes('&',"&4Warning... &c&oSQL is disabled by default in &aConfig.");
+        return ChatColor.translateAlternateColorCodes('&', prefix_Plugin +"&4Warning... &c&oSQL is disabled by default in &aConfig.");
     }
 
-    public void LogToConsole(String l) {
+    public void logToConsole(String l) {
         Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', l));
     }
+
+
 
     /**
      * Add Configuration msg.

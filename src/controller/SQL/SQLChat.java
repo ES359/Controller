@@ -1,58 +1,61 @@
 package controller.SQL;
 
+import com.enjin.es359.Controller;
 import com.enjin.es359.Inform;
-import com.enjin.es359.SettingsManager;
+import com.enjin.es359.Timestamp;
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.UUID;
+
 
 /**
  * Created by ES359 on 10/21/14.
  */
-public class SQLChat extends Inform{
+public class SQLChat extends Inform implements Listener{
 
-    public SQLChat() {}
+   private Controller main;
 
-    SettingsManager sm = SettingsManager.getControllerInstance();
-    public boolean logChat = sm.getConfig().getBoolean("");
-    SQLFunctions sf =SQLFunctions.getInstance();
+    Timestamp ts = new Timestamp();
 
-
-
-    static SQLChat instance = new SQLChat();
-
-
-    static public SQLChat getInstance() {
-        return instance;
+    public SQLChat(Controller instance) {
+        main = instance;
     }
 
+    @EventHandler
+    public void onChat(AsyncPlayerChatEvent event) {
 
 
-    public void logPlayerChat(Player p, String sql){
+        if(main.getEnabled()) {
+            Player p = event.getPlayer();
 
-        String name = p.getName();
-        String ip = "" +p.getAddress();
-        UUID uuid = p.getUniqueId();
+            String msg = event.getMessage();
 
-        sql = sql.replaceAll("%name%", p.getName());
-        sql = sql.replaceAll("%ip%",""+ p.getAddress());
-        sql = sql.replaceAll("%uuid%", "" +p.getUniqueId());
 
-        try {
-            sf.sql.c.prepareStatement(sql).executeUpdate();
-            LogToConsole(sql_prefix +" &7Logged the chat for &bplayer, &8"+name);
-        }catch (SQLException e) {
-            e.printStackTrace();
+
+            // f.logPlayerChat(p,event.getMessage(), "INSERT INTO chat (name, UUID, chat, stamp) VALUES ('" + p.getName()+" ', '" + p.getUniqueId()+ "', '"+ event.getMessage()+ "', '" +ts.getStamp()+ "' );");
+
+            try {
+                PreparedStatement statement = main.sql.c.prepareStatement("INSERT INTO chat (name, UUID, world, chat, stamp) VALUES (?, ?, ?, ?, ?);");
+
+                statement.setString(1,p.getName());
+                statement.setString(2,"" +p.getUniqueId());
+                statement.setString(3, p.getWorld().getName());
+                statement.setString(4, event.getMessage());
+                statement.setString(5,""+ ts.getStamp());
+                statement.execute();
+                statement.close();
+                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.BLUE +"Logged the chat for the Player, " +p.getName());
+
+            }catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-    }
-
-    public boolean getLogChat() {
-        return logChat;
-    }
-
-    public void setLogChat(boolean val) {
 
     }
-
 }
