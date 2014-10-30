@@ -69,3 +69,6 @@ blocked-cmds:
 custom-chat:
   Enabled: true
   Format: "&9&oChat&c> &a[%world%&a] &b&o%username% &7%message%"
+Voting:
+  Enabled: true
+  broadcast: "&b[&6Vote&b] &e%playername% &avoted on &b%servicename%&c!"

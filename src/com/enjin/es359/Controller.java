@@ -1,6 +1,7 @@
 package com.enjin.es359;
 
 import controller.SQL.*;
+import controller.Vote.VoteEvent;
 import controller.commands.*;
 import controller.events.*;
 import org.bukkit.Bukkit;
@@ -43,7 +44,6 @@ public class Controller extends JavaPlugin{
 
     public void onEnable() {
 
-
         /**
          * SQL system.
          *
@@ -63,8 +63,8 @@ public class Controller extends JavaPlugin{
         }
 
 
-
-        Bukkit.getServer().getConsoleSender().sendMessage(i.ConsoleEnabled());
+       i.logToConsole(i.ConsoleEnabled());
+       // Bukkit.getServer().getConsoleSender().sendMessage(i.ConsoleEnabled());
 		
 		sm.configSetup(this);
         ucp = new UserCPCommand(this);
@@ -87,13 +87,15 @@ public class Controller extends JavaPlugin{
         pm.registerEvents(new SQLChat(this), this);
         pm.registerEvents(new SQLCommands(this), this);
         pm.registerEvents(new SQLJoin(this), this);
+        pm.registerEvents(new VoteEvent(), this);
 		registerAllCommands();
 	}
 
 
 	public void onDisable() {	
 
-        Bukkit.getServer().getConsoleSender().sendMessage(i.ConsoleDisabled());
+
+
 	}
 	
 

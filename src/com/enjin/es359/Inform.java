@@ -166,6 +166,9 @@ public class Inform {
         Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.translateAlternateColorCodes('&', l));
     }
 
+    public void globalBroadcast(String broadcast) {
+        Bukkit.getServer().broadcastMessage(ChatColor.translateAlternateColorCodes('&', broadcast));
+    }
 
 
     /**
