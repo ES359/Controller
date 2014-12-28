@@ -58,6 +58,7 @@ public class Permissions{
     public void sendPermissionInfo3(CommandSender p) {
         p.sendMessage(ChatColor.translateAlternateColorCodes('&',""
                +"&bController.event.whitelistmsg &c&l- &aAdmin Broadcast message.\n"
+               +"&bController.cp.events.disconnect &c&l- &Allows personal disconnect from server."
                +"&b&l████████&6&l████████&b&l████████\n"
 
         ));

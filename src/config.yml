@@ -1,5 +1,5 @@
 # Controller Main Configuration File.
-
+author-msg: true
 motd:
   server: "&8&oController &4&l> &a&oEnabled."
   ingame: "&4Server &6MOTD &2Running"
@@ -60,6 +60,9 @@ Table:
 
 restricted-msg: "&c&oYou have been &4&nRestricted &cand not allowed to &4Move&c."
 restriction-msg: "&6&lThis command has been restricted by an &4Administrator&6."
+punish-command:
+  Enabled: true
+  function: "kick %player% &cDon't use that command."
 blocked-cmds:
   - /pl
   - /plugins

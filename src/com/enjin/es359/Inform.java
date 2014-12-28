@@ -2,6 +2,8 @@ package com.enjin.es359;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
+
 public class Inform {
 
     /**
@@ -152,7 +154,13 @@ public class Inform {
 		return ChatColor.translateAlternateColorCodes('&', prefix_Plugin+" &cYou &ahealed the player &6, ");
 	}
 
+    public String disconnectMsg() {
+        return ChatColor.translateAlternateColorCodes('&',prefix_Plugin+"&cYou have &6&ldisconnected &cyourself&6.");
+    }
 
+    public String usercpArguments() {
+        return ChatColor.translateAlternateColorCodes('&',"&cYou don't have permission to access other players control panels!");
+    }
 
     public String connectionErrorInform() {
         return ChatColor.translateAlternateColorCodes('&',prefix_Plugin+"&c&lConnection Error, could not establish a &c&oconnection.");
@@ -171,6 +179,8 @@ public class Inform {
     }
 
 
+
+
     /**
      * Add Configuration msg.
      */
@@ -187,6 +197,7 @@ public class Inform {
      */
 
      /*
+
 
 
 

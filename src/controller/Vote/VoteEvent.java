@@ -1,5 +1,7 @@
 package controller.Vote;
 
+/*
+
 import com.enjin.es359.Inform;
 import com.enjin.es359.SettingsManager;
 import com.vexsoftware.votifier.model.Vote;
@@ -15,6 +17,8 @@ import org.bukkit.inventory.ItemStack;
 /**
  * Created by ES359 on 10/28/14.
  */
+
+/*
 public class VoteEvent extends Inform implements Listener{
 
 
@@ -55,6 +59,8 @@ public class VoteEvent extends Inform implements Listener{
         }
     }
 }
+
+*/
 
 /**
  String functions = sm.getConfig().getString("vote-broadcast");

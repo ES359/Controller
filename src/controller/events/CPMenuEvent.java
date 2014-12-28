@@ -30,9 +30,9 @@ public class CPMenuEvent extends Inform
 
     SettingsManager sm = SettingsManager.getControllerInstance();
     ChatEvent ch = ChatEvent.getChatInstance();
+    DisconnectPlayer dp = new DisconnectPlayer();
 
-
-	public ItemStack day,night,sun,rain,pList,reload,reloadConfig,stop,whitelist,motd,whitelistmsg,chat;
+	public ItemStack day,night,sun,rain,pList,reload,reloadConfig,stop,whitelist,motd,whitelistmsg,chat, disconnect;
 	
 	public Controller c;
 	
@@ -48,18 +48,18 @@ public class CPMenuEvent extends Inform
 	
 		 
 		sun = SettingsManager.createItem(Material.DAYLIGHT_DETECTOR, ChatColor.translateAlternateColorCodes('&', "&eSets the server Weather to clear!"));
-		rain = SettingsManager.createItem(Material.WATER, ChatColor.translateAlternateColorCodes('&', "&bSet the weather to &9&orainy."));
+		rain = SettingsManager.createItem(Material.WATER_BUCKET, ChatColor.translateAlternateColorCodes('&', "&bSet the weather to &9&orainy."));
 		day = SettingsManager.createItem(Material.WATCH, ChatColor.translateAlternateColorCodes('&', "&6Sets the server time to day!"));
 		night = SettingsManager.createItem(Material.NETHER_BRICK, ChatColor.translateAlternateColorCodes('&', "&aSet the server to &9night!"));
 		pList = SettingsManager.createItem(Material.SKULL_ITEM, ChatColor.translateAlternateColorCodes('&', "&3&lList all the players online the server!"));
 		reload = SettingsManager.createItem(Material.LAVA_BUCKET, ChatColor.translateAlternateColorCodes('&', "&4&lRELOADS THE SERVER."));
 		reloadConfig = SettingsManager.createItem(Material.ENCHANTED_BOOK, ChatColor.translateAlternateColorCodes('&', "&6&lReloads the plugin's configuration."));
-		stop = SettingsManager.createItem(Material.LAVA, ChatColor.translateAlternateColorCodes('&', "&4&l&oSTOPS THE SERVER."));
+		stop = SettingsManager.createItem(Material.BEDROCK, ChatColor.translateAlternateColorCodes('&', "&4&l&oSTOPS THE SERVER."));
 		whitelist = SettingsManager.createItem(Material.PAPER, ChatColor.translateAlternateColorCodes('&', "&7Enables or disables &8Whitelist."));
 		whitelistmsg =SettingsManager.createItem(Material.BOOK, ChatColor.translateAlternateColorCodes('&', "&2&oShows the current whitelist message."));
 		motd = SettingsManager.createItem(Material.MAP, ChatColor.translateAlternateColorCodes('&', "&bShows the motd."));
 		chat = SettingsManager.createItem(Material.WRITTEN_BOOK, ChatColor.translateAlternateColorCodes('&', "&9Mutes or unmutes the &b&oChat."));
-
+        disconnect = SettingsManager.createItem(Material.ACTIVATOR_RAIL, ChatColor.translateAlternateColorCodes('&', "&6Disconnects &cyou from the server."));
 
 		cp.setItem(0, sun);
 		cp.setItem(1, rain);
@@ -73,6 +73,7 @@ public class CPMenuEvent extends Inform
 		cp.setItem(13, whitelistmsg);
 		cp.setItem(14, motd);
         cp.setItem(15, chat);
+        cp.setItem(16,disconnect);
 		cp.setItem(35, SettingsManager.closeMenuItem());
 	}
 	
@@ -96,6 +97,13 @@ public class CPMenuEvent extends Inform
 			return;
 		}
 		*/
+
+        if(event.getCurrentItem().equals(disconnect)) {
+               if(event.isRightClick() || event.isLeftClick() || event.isShiftClick()) {
+                   event.setCancelled(true);
+                   dp.disconnect(p);
+               }
+            }
 
 
 //Chat.Inform.

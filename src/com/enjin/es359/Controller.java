@@ -1,7 +1,6 @@
 package com.enjin.es359;
 
 import controller.SQL.*;
-import controller.Vote.VoteEvent;
 import controller.commands.*;
 import controller.events.*;
 import org.bukkit.Bukkit;
@@ -51,6 +50,9 @@ public class Controller extends JavaPlugin{
          */
 
         if(enabled) {
+
+
+
             sql = new SQL(getConfig().getString("Database.host"), getConfig().getString("Database.username"), getConfig().getString("Database.password"), getConfig().getString("Database.database"));
             f = new CreateSQLTables();
             f.createTable(sql, getConfig().getBoolean("Table.logchat"), "CREATE TABLE IF NOT EXISTS chat (name varchar(50), UUID VARCHAR(50), World varchar(20), chat varchar(150), stamp varchar(50) );");
@@ -87,10 +89,13 @@ public class Controller extends JavaPlugin{
         pm.registerEvents(new SQLChat(this), this);
         pm.registerEvents(new SQLCommands(this), this);
         pm.registerEvents(new SQLJoin(this), this);
-        pm.registerEvents(new VoteEvent(), this);
+        //wpm.registerEvents(new SignCreation(), this);
+       // pm.registerEvents(new VoteEvent(), this);
 		registerAllCommands();
 	}
 
+
+    //I would show you the garden where I'm growing all my fucks, but It's been dry so there's not many.tt
 
 	public void onDisable() {	
 

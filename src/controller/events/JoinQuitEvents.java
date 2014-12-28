@@ -1,5 +1,6 @@
 package controller.events;
 
+import com.enjin.es359.Inform;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -9,10 +10,11 @@ import org.bukkit.event.player.PlayerQuitEvent;
 
 import com.enjin.es359.SettingsManager;
 
-public class JoinQuitEvents implements Listener{
+public class JoinQuitEvents extends Inform implements Listener{
 
 	SettingsManager sm = SettingsManager.getControllerInstance();
-	
+
+
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent event) {
 		Player p = event.getPlayer();
@@ -20,7 +22,9 @@ public class JoinQuitEvents implements Listener{
 		String motd = sm.getConfig().getString("motd.ingame");
 		motd = motd.replaceAll("&", "§");
 		p.sendMessage(motd);
-		
+
+
+
 		
 		/**
 		 * 

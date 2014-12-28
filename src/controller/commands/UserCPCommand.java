@@ -5,6 +5,7 @@ import com.enjin.es359.Functions;
 import com.enjin.es359.Inform;
 import com.enjin.es359.SettingsManager;
 
+import controller.events.DisconnectPlayer;
 import org.bukkit.*;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -45,44 +46,40 @@ public class UserCPCommand extends Inform implements CommandExecutor, Listener{
 
        Player p = (Player)sender;
 
+
+
         if(cmd.getName().equalsIgnoreCase("usercp")) {
 //            p.sendMessage(ChatColor.RED + "DEBUG MESSAGE TRYING TO TEST COMMAND");
 
-
-            if(!p.hasPermission("Controller.cmd.usercp")) {
-                p.sendMessage(inform.permissionError());
-                return true;
+            if(!p.hasPermission("Controller.cmd.cp")) {
+                p.sendMessage(permissionError());
             }else {
 
                 if(args.length == 0) {
-                    p.sendMessage(inform.ArgumentsError());
-                    return true;
+                    p.sendMessage(returnArgumentError());
                 }else if(args.length == 1) {
+                     target = Bukkit.getServer().getPlayer(args[0]);
 
-                  //  p.sendMessage(ChatColor.RED + "DEBUG MESSAGE TRYING TO TEST COMMAND");
-
-                    target = Bukkit.getServer().getPlayer(args[0]);
-
-                    if(target == null ) {
-                        p.sendMessage(ChatColor.RED + "That player couldn't be targeted. Is the user = online?");
+                    if(target == null) {
+                        p.sendMessage(playerNotFound());
                         return true;
                     }else {
                         adminMenu(p);
+                        return true;
                     }
                 }
             }
         }
-		
 		return true;
 	}
 
     private ItemStack IP, Location, Operator,Whitelist,UUID;
-    public ItemStack tp,tphere,kill,cr,su,ad,heal,fly,pw,pt;
+    public ItemStack tp,tphere,kill,cr,su,ad,heal,fly,pw,pt,disconnect;
     public ItemStack Health;
     public ItemStack Name;
     public void adminMenu(Player p) {
 
-        Inventory a = Bukkit.getServer().createInventory(null, 36, ChatColor.translateAlternateColorCodes('&', "&c&oAdmin &6User&cCP &b> " + p.getName()));
+        Inventory a = Bukkit.getServer().createInventory(null, 36, ChatColor.translateAlternateColorCodes('&', "&cCP &b> " + target.getName()));
 
         UUID = SettingsManager.createItem(Material.ENCHANTED_BOOK, ChatColor.GREEN + "Player, " + target.getName() + "'s UUID: " + ChatColor.RED + target.getUniqueId());
         IP = SettingsManager.createItem(Material.DAYLIGHT_DETECTOR, ChatColor.GOLD + "Player, " + target.getName() + "'s IP address: " +ChatColor.BOLD + "" + ChatColor.GREEN + target.getAddress());
@@ -102,6 +99,9 @@ public class UserCPCommand extends Inform implements CommandExecutor, Listener{
         fly = SettingsManager.createItem(Material.BEACON, ChatColor.translateAlternateColorCodes('&', "&bEnables the players &6Fly &cMode."));
         pw = SettingsManager.createItem(Material.DAYLIGHT_DETECTOR, ChatColor.translateAlternateColorCodes('&', "&bSets the &e&oPlayer weather to &cclear &6or &9rainy"));
         pt = SettingsManager.createItem(Material.WATCH, ChatColor.translateAlternateColorCodes('&', "&bSets the &e&oPlayer time to &cday &6or &9night"));
+        disconnect = SettingsManager.createItem(Material.ACTIVATOR_RAIL, ChatColor.translateAlternateColorCodes('&', "&6Disconnects &cyou from the server."));
+
+
 
         a.setItem(9, tp);
         a.setItem(10,tphere);
@@ -113,6 +113,7 @@ public class UserCPCommand extends Inform implements CommandExecutor, Listener{
         a.setItem(16, pw);
         a.setItem(17, pt);
         a.setItem(18, kill);
+        a.setItem(19,disconnect);
 
         a.setItem(0, UUID);
         a.setItem(1, IP);
@@ -131,11 +132,21 @@ public class UserCPCommand extends Inform implements CommandExecutor, Listener{
      *
      */
 
+    private DisconnectPlayer dp = new DisconnectPlayer();
+
     Player pclick;
     @EventHandler
     public void invListener(InventoryClickEvent event) {
 
         pclick = (Player)event.getWhoClicked();
+
+
+        if(event.getCurrentItem().equals(disconnect)) {
+            if(event.isRightClick() || event.isLeftClick() || event.isShiftClick()) {
+                event.setCancelled(true);
+                dp.disconnect(pclick);
+            }
+        }
 
       if(event.getCurrentItem().equals(SettingsManager.closeMenuItem())) {
           if(event.isRightClick() || event.isLeftClick() || event.isShiftClick()) {

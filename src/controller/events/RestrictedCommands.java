@@ -2,6 +2,7 @@ package controller.events;
 
 import com.enjin.es359.Inform;
 import com.enjin.es359.SettingsManager;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -18,6 +19,14 @@ public class RestrictedCommands extends Inform implements Listener {
 
     SettingsManager sm = SettingsManager.getControllerInstance();
 
+    private boolean punishCommand = sm.getConfig().getBoolean("punish-command.Enabled");
+
+    public boolean getPunish() {
+        return punishCommand;
+    }
+
+
+
     @EventHandler
     public void commandProcess(PlayerCommandPreprocessEvent event) {
 
@@ -33,9 +42,20 @@ public class RestrictedCommands extends Inform implements Listener {
             List<String> denyList = sm.getConfig().getStringList("blocked-cmds");
 
             if (denyList.contains(command)) {
-                event.setCancelled(true);
-                event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', denied));
+               if(getPunish() == true) {
+                   event.setCancelled(true);
 
+                   String fun = sm.getConfig().getString("punish-command.function");
+
+                   fun = fun.replaceAll("%player%", event.getPlayer().getName());
+
+                   Bukkit.getServer().dispatchCommand(Bukkit.getServer().getConsoleSender(), ChatColor.translateAlternateColorCodes('&', fun));
+                   //event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', denied));
+
+               }else {
+                   event.setCancelled(true);
+                   event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', denied));
+               }
             }
 
 
