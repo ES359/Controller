@@ -1,6 +1,6 @@
 name: Controller
 main: com.enjin.es359.Controller
-version: 1.1
+version: 2.1
 description: Server Controller plugin. Supports MySQL function.
 author: ES359
 
@@ -37,6 +37,9 @@ commands:
 
   permissions:
     description: Main command to display permissions.
+
+  controller:
+    description: Default command for Controller.
 
 
 permissions:

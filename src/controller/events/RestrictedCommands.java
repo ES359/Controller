@@ -12,6 +12,13 @@ import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import java.util.List;
 
 /**
+ * Add catching statement check to see if command is legal
+ * without throwing tons of errors.
+ */
+
+
+
+/**
  * Created by ES359 on 9/29/14.
    Contributed: http://forums.bukkit.org/members/ferusgrim.90872703/
  */

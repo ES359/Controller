@@ -15,7 +15,7 @@ import java.sql.SQLException;
 /**
  * Created by ES359 on 10/27/14.
  */
-public class SQLCommands extends Inform implements Listener{
+public class SQLCommands extends SQL{
 
     private Controller main;
 

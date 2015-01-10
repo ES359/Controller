@@ -45,6 +45,7 @@ public class CPMenuEvent extends Inform
 		
 	Bukkit.getServer().getPluginManager().registerEvents(this, p);
 
+
 	
 		 
 		sun = SettingsManager.createItem(Material.DAYLIGHT_DETECTOR, ChatColor.translateAlternateColorCodes('&', "&eSets the server Weather to clear!"));

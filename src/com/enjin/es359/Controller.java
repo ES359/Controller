@@ -95,6 +95,18 @@ public class Controller extends JavaPlugin{
 	}
 
 
+/*
+http://stackoverflow.com/questions/12041354/java-getting-data-from-mysql-database
+https://www.maa.org/sites/default/files/pdf/upload_library/22/Evans/april_1997_5.pdf
+http://pastebin.com/NfLwa0YL
+
+http://apod.nasa.gov/htmltest/gifcity/sqrt2.1mil
+http://bukkit.org/threads/tut-moving-from-player-names-to-uuid.241626/
+
+
+ */
+
+
     //I would show you the garden where I'm growing all my fucks, but It's been dry so there's not many.tt
 
 	public void onDisable() {	
@@ -116,6 +128,8 @@ public class Controller extends JavaPlugin{
         registerCmd("chat", new ChatCommand());
         registerCmd("restrict", new RestrictCommand());
         registerCmd("permissions", new PermissionsCommand());
+        registerCmd("controller", new ControllerCommand());
+        registerCmd("item", new ItemCommand());
 	}
 	
 	public void registerCmd(String command, CommandExecutor commandExecutor)

@@ -11,6 +11,7 @@ import java.sql.DriverManager;
  */
 public class SQL extends Inform{
 
+    public SQL() {}
 
      public Connection c;
 

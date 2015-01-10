@@ -80,7 +80,9 @@ public class SettingsManager {
 	public Plugin pl() {
 		return plugin;
 	}
-	
+
+
+
 	static public ItemStack createItem(Material mat, String name) {
 
         name = name.replaceAll("&", "");
