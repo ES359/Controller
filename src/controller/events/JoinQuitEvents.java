@@ -44,7 +44,6 @@ public class JoinQuitEvents extends Inform implements Listener{
 		
 		if(sm.getConfig().getBoolean("Join.enabled")) {
 
-
             String join = sm.getConfig().getString("Join.message");
 
             join = join.replaceAll("&", "§");

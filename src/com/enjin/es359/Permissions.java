@@ -59,6 +59,7 @@ public class Permissions{
         p.sendMessage(ChatColor.translateAlternateColorCodes('&',""
                +"&bController.event.whitelistmsg &c&l- &aAdmin Broadcast message.\n"
                +"&bController.cp.events.disconnect &c&l- &Allows personal disconnect from server."
+               +"&eSQL.execute &c&l- &aAllows user to execute query's. &4Only give to user you TRUST!"
                +"&b&l████████&6&l████████&b&l████████\n"
 
         ));

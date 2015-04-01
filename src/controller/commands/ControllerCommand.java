@@ -23,10 +23,10 @@ public class ControllerCommand extends Inform implements CommandExecutor {
 
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&',
                         "&b&l████████ &6&l████████ &b&l████████\n"
-                        +"&6Plugin &eController, &av2.1 &2by &b&oES359!\n"
+                        +"&6Plugin &eController, &av3.2 &2by &b&oES359!\n"+
+                               ChatColor.RED +"控制器插件由ES359创建。\n"
                         +"&3Type /permissions &2for &6Info.\n"
-                        +"&cQuestions? &6Comments? &a&oBug reports?\n &bSend them to: &e&oesj359@gmail.com"
-
+                        +"&cQuestions? &6Comments? &a&oBug reports?\n Use /bugreport to help out!"
                 ));
             }else if(args.length == 1) {
                 sender.sendMessage(ChatColor.BLUE  + "Hi. ");

@@ -52,19 +52,19 @@ public class UserCPCommand extends Inform implements CommandExecutor, Listener{
 //            p.sendMessage(ChatColor.RED + "DEBUG MESSAGE TRYING TO TEST COMMAND");
 
             if(!p.hasPermission("Controller.cmd.cp")) {
-                p.sendMessage(permissionError());
+                p.sendMessage(prefix_Permission +permissionError());
             }else {
 
                 if(args.length == 0) {
                     p.sendMessage(returnArgumentError());
-                }else if(args.length == 1) {
+                }else if(args.length > 0) {
                      target = Bukkit.getServer().getPlayer(args[0]);
 
                     if(target == null) {
                         p.sendMessage(playerNotFound());
                         return true;
                     }else {
-                        adminMenu(p);
+                        adminMenu(p,target);
                         return true;
                     }
                 }
@@ -77,17 +77,19 @@ public class UserCPCommand extends Inform implements CommandExecutor, Listener{
     public ItemStack tp,tphere,kill,cr,su,ad,heal,fly,pw,pt,disconnect;
     public ItemStack Health;
     public ItemStack Name;
-    public void adminMenu(Player p) {
+    public void adminMenu(Player p, Player user) {
 
-        Inventory a = Bukkit.getServer().createInventory(null, 36, ChatColor.translateAlternateColorCodes('&', "&cCP &b> " + target.getName()));
+        target = user;
 
-        UUID = SettingsManager.createItem(Material.ENCHANTED_BOOK, ChatColor.GREEN + "Player, " + target.getName() + "'s UUID: " + ChatColor.RED + target.getUniqueId());
-        IP = SettingsManager.createItem(Material.DAYLIGHT_DETECTOR, ChatColor.GOLD + "Player, " + target.getName() + "'s IP address: " +ChatColor.BOLD + "" + ChatColor.GREEN + target.getAddress());
-        Location = SettingsManager.createItem(Material.COMPASS, ChatColor.GOLD +"Player, " + target.getName() + "'s Location: " + ChatColor.GRAY +  + target.getLocation().getBlockX() +", " + ChatColor.BLUE +target.getLocation().getBlockY() + "" + ChatColor.GREEN + ", " + target.getLocation().getBlockZ());
-        Operator = SettingsManager.createItem(Material.BEACON, ChatColor.DARK_RED + "Player, " + target.getName() + "'s Operator Status: " + ChatColor.RED + target.isOp());
-        Whitelist = SettingsManager.createItem(Material.PAPER, ChatColor.YELLOW + "Player, " + target.getName() + "'s Whitelist Status: " + ChatColor.GOLD + target.isWhitelisted());
-        Health = SettingsManager.createItem(Material.POTION, ChatColor.AQUA + "Player, " + target.getName() + "'s Health: " + ChatColor.DARK_AQUA + target.getHealthScale());
-        Name = SettingsManager.createItem(Material.BOOK, ChatColor.DARK_GREEN + "Player, " + target.getName() + "'s Name: " + ChatColor.AQUA + target.getName());
+        Inventory a = Bukkit.getServer().createInventory(null, 36, ChatColor.translateAlternateColorCodes('&', "&cCP &b> " + user.getName()));
+
+        UUID = SettingsManager.createItem(Material.ENCHANTED_BOOK, ChatColor.GREEN + "Player, " + user.getName() + "'s UUID: " + ChatColor.RED + user.getUniqueId());
+        IP = SettingsManager.createItem(Material.DAYLIGHT_DETECTOR, ChatColor.GOLD + "Player, " + user.getName() + "'s IP address: " +ChatColor.BOLD + "" + ChatColor.GREEN + user.getAddress());
+        Location = SettingsManager.createItem(Material.COMPASS, ChatColor.GOLD +"Player, " + user.getName() + "'s Location: " + ChatColor.GRAY +  + user.getLocation().getBlockX() +", " + ChatColor.BLUE +user.getLocation().getBlockY() + "" + ChatColor.GREEN + ", " + user.getLocation().getBlockZ());
+        Operator = SettingsManager.createItem(Material.BEACON, ChatColor.DARK_RED + "Player, " + user.getName() + "'s Operator Status: " + ChatColor.RED + user.isOp());
+        Whitelist = SettingsManager.createItem(Material.PAPER, ChatColor.YELLOW + "Player, " + user.getName() + "'s Whitelist Status: " + ChatColor.GOLD + user.isWhitelisted());
+        Health = SettingsManager.createItem(Material.POTION, ChatColor.AQUA + "Player, " + user.getName() + "'s Health: " + ChatColor.DARK_AQUA + user.getHealthScale());
+        Name = SettingsManager.createItem(Material.BOOK, ChatColor.DARK_GREEN + "Player, " + user.getName() + "'s Name: " + ChatColor.AQUA + user.getName());
 
         tp = SettingsManager.createItem(Material.COMPASS, ChatColor.GOLD + "Teleport to the target Player.");
         tphere = SettingsManager.createItem(Material.LEASH, ChatColor.translateAlternateColorCodes('&', "&eTeleport the target player to you."));

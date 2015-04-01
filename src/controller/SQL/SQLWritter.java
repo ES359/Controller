@@ -7,6 +7,7 @@ import java.sql.SQLException;
 /**
  * Created by ES359 on 1/9/15.
  */
+
 public class SQLWritter extends SQL{
 
     private String statement;

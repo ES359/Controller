@@ -23,7 +23,7 @@ public class SQLJoin extends Inform implements Listener{
     private Controller main;
 
     public SQLJoin(Controller instance) {
-        main = instance;
+       this.main = instance;
     }
 
     @EventHandler

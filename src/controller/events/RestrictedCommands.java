@@ -26,6 +26,7 @@ public class RestrictedCommands extends Inform implements Listener {
 
     SettingsManager sm = SettingsManager.getControllerInstance();
 
+
     private boolean punishCommand = sm.getConfig().getBoolean("punish-command.Enabled");
 
     public boolean getPunish() {
@@ -36,6 +37,7 @@ public class RestrictedCommands extends Inform implements Listener {
 
     @EventHandler
     public void commandProcess(PlayerCommandPreprocessEvent event) {
+
 
         String denied = sm.getConfig().getString("restriction-msg");
 

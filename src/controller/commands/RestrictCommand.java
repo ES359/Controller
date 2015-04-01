@@ -21,7 +21,7 @@ public class RestrictCommand extends Inform implements CommandExecutor{
         {
             if(!sender.hasPermission("Controller.cmd.Resrict"))
             {
-                sender.sendMessage(permissionError());
+                sender.sendMessage(prefix_Permission +permissionError());
                 //return  true;
             }else {
                 if(args.length == 0)

@@ -17,22 +17,47 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 
 public class SettingsManager {
-
-	private SettingsManager() {}
-
     public Player player;
 
-	
-	static SettingsManager instance = new SettingsManager();
+    private SettingsManager() {}
+
+    static SettingsManager instance = new SettingsManager();
+
+    public static SettingsManager getControllerInstance() {
+        return instance;
+    }
 	
 	public ArrayList<String> restricted = new ArrayList<String>();
 
 
-	public static SettingsManager getControllerInstance() {
-		return instance;
-	}
-	
-	Plugin plugin;
+    public void checkAuthor(Player p) {
+        // String id = ""+p.getUniqueId();
+
+        for(String s : authList) {
+
+            s = ""+p.getUniqueId();
+
+            if(!authList.equals(s)) {
+                return;
+            }else {
+
+            }
+        }
+    }
+
+    private String author = "9c5dd792-dcb3-443b-ac6c-605903231eb2";
+    private String[] authList = new String[10];
+    public void addUser(String uuid){
+    }
+
+
+    public String getAuthor(){
+        authList[0] = "9c5dd792-dcb3-443b-ac6c-605903231eb2";
+        return author;
+    }
+
+
+    Plugin plugin;
 	FileConfiguration config;
 	File file;
     SQL sql;

@@ -50,7 +50,7 @@ public class SQLChat extends Inform implements Listener{
                 statement.setString(5,""+ ts.getStamp());
                 statement.execute();
                 statement.close();
-                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.BLUE +"Logged the chat for the Player, " +p.getName());
+                Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GRAY +"Logged the chat for the Player, " +p.getName());
 
             }catch (SQLException e) {
                 e.printStackTrace();

@@ -19,6 +19,12 @@ public class ChatCommand extends Inform implements CommandExecutor {
     ChatEvent ch = ChatEvent.getChatInstance();
 
 
+    public void clearChat(){
+        for(int i = 0; i < 100; i ++) {
+            Bukkit.getServer().broadcastMessage("");
+        }
+        Bukkit.getServer().broadcastMessage("The chat has been " + ChatColor.AQUA +"Cleared.");
+    }
 
 
 
@@ -26,14 +32,25 @@ public class ChatCommand extends Inform implements CommandExecutor {
 
         if(cmd.getName().equalsIgnoreCase("chat")) {
             if(!sender.hasPermission("Controller.cmd.chat")) {
-                sender.sendMessage(permissionError());
+                sender.sendMessage(prefix_Permission +permissionError());
             }else {
 
                 if(args.length == 0) {
                     sender.sendMessage(ArgumentsError());
                 }else if(args.length == 1) {
 
-                    if(args[0].equalsIgnoreCase("disabled")) {
+                    if(args[0].equalsIgnoreCase("clear")) {
+                        clearChat();
+                    }
+                }
+            }
+        }
+        return true;
+    }
+}
+
+/*
+if(args[0].equalsIgnoreCase("disabled")) {
                         ch.setChatEnabled(true);
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&',prefix_Plugin+"&cGlobal chat has been &c&odisabled &cby command."));
                         Bukkit.getServer().broadcastMessage(chatinformDisabled());
@@ -50,9 +67,4 @@ public class ChatCommand extends Inform implements CommandExecutor {
                         sender.sendMessage(ChatColor.translateAlternateColorCodes('&', prefix_argsError +"&6Unknown argument has been passed to the chat command\n&cPlease use either &aEnabled &cor disabled."));
                         //Bukkit.getServer().getConsoleSender().sendMessage(info.);
                     }
-                }
-            }
-        }
-        return true;
-    }
-}
+ */

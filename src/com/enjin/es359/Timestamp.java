@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * Created by ES359 on 10/27/14.
  */
-public class Timestamp {
+public class  Timestamp {
 
     Calendar cal = Calendar.getInstance();
 

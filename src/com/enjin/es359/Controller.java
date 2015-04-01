@@ -1,6 +1,7 @@
 package com.enjin.es359;
 
 import controller.SQL.*;
+import controller.SQL.SQLCOMMANDS.*;
 import controller.commands.*;
 import controller.events.*;
 import org.bukkit.Bukkit;
@@ -11,6 +12,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Controller extends JavaPlugin{
 
 
+    /*
+    http://www.soma.com/store/browse/product.jsp?&productId=570118153&cmp=BAC-struq_promo_DIS__300x250_2_10
+
+    http://www.soma.com/store/browse/product.jsp?&productId=570118153&cmp=BAC-struq_promo_DIS__300x250_2_10
+     */
 
     Inform i = new Inform();
 	SettingsManager sm = SettingsManager.getControllerInstance();
@@ -55,19 +61,17 @@ public class Controller extends JavaPlugin{
 
             sql = new SQL(getConfig().getString("Database.host"), getConfig().getString("Database.username"), getConfig().getString("Database.password"), getConfig().getString("Database.database"));
             f = new CreateSQLTables();
-            f.createTable(sql, getConfig().getBoolean("Table.logchat"), "CREATE TABLE IF NOT EXISTS chat (name varchar(50), UUID VARCHAR(50), World varchar(20), chat varchar(150), stamp varchar(50) );");
-            f.createTable(sql,getConfig().getBoolean("Table.logcommands"), "CREATE TABLE IF NOT EXISTS commands (name varchar(50), UUID varchar(50), command varchar(150), stamp varchar(50) );");
-            f.createTable(sql,getConfig().getBoolean("Table.logplayer"), "CREATE TABLE IF NOT EXISTS playertable (uuid VARCHAR(50), name VARCHAR(50), ip varchar(35), exp VARCHAR(50), world VARCHAR(25), location varchar(60), isOp varchar(10), whitelist varchar(10), stamp varchar(50) );");
+            f.createTable(sql, getConfig().getBoolean("Table.logchat"), "CREATE TABLE IF NOT EXISTS chat ( id INT PRIMARY KEY AUTO_INCREMENT, name varchar(50), UUID VARCHAR(50), World varchar(20), chat varchar(150), stamp varchar(50) );");
+            f.createTable(sql,getConfig().getBoolean("Table.logcommands"), "CREATE TABLE IF NOT EXISTS commands (id INT PRIMARY KEY AUTO_INCREMENT, name varchar(50), UUID varchar(50), command varchar(150), stamp varchar(50) );");
+            f.createTable(sql,getConfig().getBoolean("Table.logplayer"), "CREATE TABLE IF NOT EXISTS playertable (id INT PRIMARY KEY AUTO_INCREMENT, uuid VARCHAR(50), name VARCHAR(50), ip varchar(35), exp VARCHAR(50), world VARCHAR(25), location varchar(60), isOp varchar(10), whitelist varchar(10), stamp varchar(50) );");
         }
 
         if(enabled == false ){
             i.logToConsole("&cSQL is disabled in &a&oconfiguration file!");
         }
 
-
        i.logToConsole(i.ConsoleEnabled());
-       // Bukkit.getServer().getConsoleSender().sendMessage(i.ConsoleEnabled());
-		
+
 		sm.configSetup(this);
         ucp = new UserCPCommand(this);
 		cpm = new CPMenuEvent(this, this);
@@ -75,10 +79,6 @@ public class Controller extends JavaPlugin{
 
 
         PluginManager pm = Bukkit.getServer().getPluginManager();
-		
-		//████████
-		
-	//	pm.registerEvents(new UserCPCommand(this), this);
 		pm.registerEvents(new BlockListener(), this);
 		pm.registerEvents(new MOTDEvents(), this);
 		pm.registerEvents(new JoinQuitEvents(), this);
@@ -89,25 +89,10 @@ public class Controller extends JavaPlugin{
         pm.registerEvents(new SQLChat(this), this);
         pm.registerEvents(new SQLCommands(this), this);
         pm.registerEvents(new SQLJoin(this), this);
-        //wpm.registerEvents(new SignCreation(), this);
-       // pm.registerEvents(new VoteEvent(), this);
+        pm.registerEvents(new AuthorEvent(this),this);
+
 		registerAllCommands();
 	}
-
-
-/*
-http://stackoverflow.com/questions/12041354/java-getting-data-from-mysql-database
-https://www.maa.org/sites/default/files/pdf/upload_library/22/Evans/april_1997_5.pdf
-http://pastebin.com/NfLwa0YL
-
-http://apod.nasa.gov/htmltest/gifcity/sqrt2.1mil
-http://bukkit.org/threads/tut-moving-from-player-names-to-uuid.241626/
-
-
- */
-
-
-    //I would show you the garden where I'm growing all my fucks, but It's been dry so there's not many.tt
 
 	public void onDisable() {	
 
@@ -129,17 +114,20 @@ http://bukkit.org/threads/tut-moving-from-player-names-to-uuid.241626/
         registerCmd("restrict", new RestrictCommand());
         registerCmd("permissions", new PermissionsCommand());
         registerCmd("controller", new ControllerCommand());
-        registerCmd("item", new ItemCommand());
+        registerCmd("addcmd", new AddCmdRestriction());
+
+        registerCmd("sql", new Query(this));
+
+        registerCmd("auth", new AuthorCommand(this,ucp));
+        registerCmd("bugreport", new Report());
+        registerCmd("reports", new GetReports());
+        registerCmd("connection", new Connection());
+        registerCmd("checkreports",new CheckReports());
+        registerCmd("deletereport",new DeleteReport());
 	}
 	
-	public void registerCmd(String command, CommandExecutor commandExecutor)
-	{
-		Bukkit.getServer().getPluginCommand(command).setExecutor(commandExecutor);
-	}
-    /*
-    public SQL getSQL() {
-        return sql;
+	public void registerCmd(String command, CommandExecutor commandExecutor) {
+        Bukkit.getServer().getPluginCommand(command).setExecutor(commandExecutor);
     }
-    */
 
 }

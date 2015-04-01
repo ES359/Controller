@@ -6,6 +6,7 @@ author: ES359
 
 commands:
   alert:
+    aliases: [a]
     description: Broadcasts a message across the server. 
     
   motd:
@@ -33,14 +34,43 @@ commands:
     description: main command to enable or disable chat.
 
   restrict:
+    aliases: [sr]
     description: Main command to Restrict a Player.
 
   permissions:
+    aliases: [perms]
     description: Main command to display permissions.
 
   controller:
     description: Default command for Controller.
 
+  sql:
+    description: Command to execute SQL query's.
+
+  addcmd:
+    description: Main command for Controller Command restriction.
+    aliases: [ac, addc, cadd,]
+
+  auth:
+    description: Author command.
+
+  bugreport:
+    description: Report command.
+
+  reports:
+    description: Main command for checking player reports.
+
+  connection:
+    description: Test and sql connection.
+    aliases: [con]
+
+  checkreports:
+    description:
+    aliases: [check]
+
+  deletereport:
+    description:
+    aliases: [delete]
 
 permissions:
   Controller.*:
