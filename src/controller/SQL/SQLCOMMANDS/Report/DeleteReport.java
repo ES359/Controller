@@ -1,4 +1,4 @@
-package controller.SQL.SQLCOMMANDS;
+package controller.SQL.SQLCOMMANDS.Report;
 
 import com.enjin.es359.SettingsManager;
 import controller.SQL.SQL;

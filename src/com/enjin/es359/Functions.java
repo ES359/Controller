@@ -11,6 +11,8 @@ import org.bukkit.entity.Player;
  */
 public class Functions extends Inform {
 
+
+
     public Functions() {}
 
     static Functions finstance = new Functions();
@@ -103,7 +105,6 @@ public class Functions extends Inform {
 
     public void close(Player p) {
         p.closeInventory();
-        return;
     }
 
 

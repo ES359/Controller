@@ -15,46 +15,26 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.plugin.PluginManager;
 
 public class SettingsManager {
+
     public Player player;
-
     private SettingsManager() {}
-
     static SettingsManager instance = new SettingsManager();
-
     public static SettingsManager getControllerInstance() {
         return instance;
     }
-	
 	public ArrayList<String> restricted = new ArrayList<String>();
 
 
-    public void checkAuthor(Player p) {
-        // String id = ""+p.getUniqueId();
-
-        for(String s : authList) {
-
-            s = ""+p.getUniqueId();
-
-            if(!authList.equals(s)) {
-                return;
-            }else {
-
-            }
-        }
-    }
-
     private String author = "9c5dd792-dcb3-443b-ac6c-605903231eb2";
     private String[] authList = new String[10];
-    public void addUser(String uuid){
-    }
-
-
     public String getAuthor(){
         authList[0] = "9c5dd792-dcb3-443b-ac6c-605903231eb2";
         return author;
     }
+
 
 
     Plugin plugin;
@@ -103,7 +83,9 @@ public class SettingsManager {
 	}
 	
 	public Plugin pl() {
-		return plugin;
+
+
+        return plugin;
 	}
 
 
@@ -118,13 +100,13 @@ public class SettingsManager {
 		is.setItemMeta(meta);
 		return is;
 	}
-	
+
 	static public  ItemStack closeMenuItem() {
 		return createItem(Material.LAVA_BUCKET, ChatColor.translateAlternateColorCodes('&', "&6Closes this &cMenu."));
 	}
-	
+
 	static public void closeMenu(Player p) {
 		p.closeInventory();
 	}
-	
+
 }

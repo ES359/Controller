@@ -36,9 +36,9 @@ public class CreateSQLTables extends Inform {
     public void createTable(SQL value, String sql) {
         try {
             value.c.prepareStatement(sql).executeUpdate();
-            logToConsole("&bSQL table has been created!");
+           // logToConsole("&bSQL table has been created!");
         }catch (SQLException e){
-            logToConsole("&4WARNING. SQL table could not be created.");
+            //logToConsole("&4WARNING. SQL table could not be created.");
         }
     }
 }

@@ -18,7 +18,7 @@ AlertPrefix: "&8&oAlert &b&l> &a&o"
 
 # Disables TNT explosions:
 Explosion:
-  Disabled: true
+  Disabled: false
 # ======================================
 #
 #

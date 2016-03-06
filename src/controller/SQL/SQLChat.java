@@ -41,13 +41,13 @@ public class SQLChat extends Inform implements Listener{
             // f.logPlayerChat(p,event.getMessage(), "INSERT INTO chat (name, UUID, chat, stamp) VALUES ('" + p.getName()+" ', '" + p.getUniqueId()+ "', '"+ event.getMessage()+ "', '" +ts.getStamp()+ "' );");
 
             try {
-                PreparedStatement statement = main.sql.c.prepareStatement("INSERT INTO chat (name, UUID, world, chat, stamp) VALUES (?, ?, ?, ?, ?);");
+                PreparedStatement statement = main.sql.c.prepareStatement("INSERT INTO chat (name, UUID, world, chat_msg, stamp) VALUES (?, ?, ?, ?, ?);");
 
                 statement.setString(1,p.getName());
-                statement.setString(2,"" +p.getUniqueId());
+                statement.setString(2,p.getUniqueId().toString());
                 statement.setString(3, p.getWorld().getName());
                 statement.setString(4, event.getMessage());
-                statement.setString(5,""+ ts.getStamp());
+                statement.setString(5,ts.getStamp().toString());
                 statement.execute();
                 statement.close();
                 Bukkit.getServer().getConsoleSender().sendMessage(ChatColor.GRAY +"Logged the chat for the Player, " +p.getName());

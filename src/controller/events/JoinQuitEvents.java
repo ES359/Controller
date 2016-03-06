@@ -23,8 +23,6 @@ public class JoinQuitEvents extends Inform implements Listener{
 		motd = motd.replaceAll("&", "§");
 		p.sendMessage(motd);
 
-
-
 		
 		/**
 		 * 
